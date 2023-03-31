@@ -4,13 +4,5 @@ namespace SCAuditStudio
     {
         //Read two strings and context
         //
-
-
-
-        [STAThread]
-        static void Main()
-        {
-
-        }
     }
 }
