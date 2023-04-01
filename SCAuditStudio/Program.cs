@@ -12,10 +12,6 @@ namespace SCAuditStudio
         {
             ApplicationConfiguration.Initialize();
             Application.Run(new MainView());
-
-            //MDReader mdReader = new(@"C:\Users\Phillip\Downloads\2023-02-gmx-judging-Oot2k\2023-02-gmx-judging-Oot2k");
-            //MDFile mdFile = await mdReader.ReadFileAsync("001.md");
-            //InfoMessage("MD File", mdFile.author);
         }
 
         public static void InfoMessage(string header, string text)

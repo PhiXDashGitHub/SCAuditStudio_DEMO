@@ -28,6 +28,15 @@
             return files[0];
         }
 
+        public async Task<string> ReadFileContentAsync(string fileName)
+        {
+            //search file, return if not found
+            string? path = SearchFile(fileName);
+            if (path == null) { return "invalid"; }
+
+            return await File.ReadAllTextAsync(path);
+        }
+
         public async Task<MDFile> ReadFileAsync(string fileName)
         {
             MDFile file = new();
@@ -37,7 +46,7 @@
             if (path == null) { return MDFile.Invalid; }
 
             file.path = path;
-            file.rawContent = File.ReadAllText(path);
+            file.rawContent = await File.ReadAllTextAsync(path);
 
             //check for minimum length
             if (file.rawContent.Length < 10) { return MDFile.Invalid; }
