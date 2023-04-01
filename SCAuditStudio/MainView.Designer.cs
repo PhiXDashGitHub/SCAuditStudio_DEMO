@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.MDFileList = new System.Windows.Forms.TreeView();
@@ -43,22 +44,16 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.splitContainer1, "splitContainer1");
             this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1181, 725);
-            this.splitContainer1.SplitterDistance = 669;
-            this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.splitContainer2, "splitContainer2");
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -68,40 +63,29 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.MDFileViewTabs);
-            this.splitContainer2.Size = new System.Drawing.Size(1181, 669);
-            this.splitContainer2.SplitterDistance = 393;
-            this.splitContainer2.TabIndex = 0;
             // 
             // MDFileList
             // 
-            this.MDFileList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MDFileList.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.MDFileList, "MDFileList");
             this.MDFileList.Name = "MDFileList";
-            this.MDFileList.Size = new System.Drawing.Size(393, 669);
-            this.MDFileList.TabIndex = 0;
             this.MDFileList.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.MDFileList_ViewElement);
             // 
             // MDFileViewTabs
             // 
-            this.MDFileViewTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            resources.ApplyResources(this.MDFileViewTabs, "MDFileViewTabs");
             this.MDFileViewTabs.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.MDFileViewTabs.Location = new System.Drawing.Point(0, 0);
             this.MDFileViewTabs.Name = "MDFileViewTabs";
-            this.MDFileViewTabs.Padding = new System.Drawing.Point(20, 4);
             this.MDFileViewTabs.SelectedIndex = 0;
-            this.MDFileViewTabs.Size = new System.Drawing.Size(784, 669);
-            this.MDFileViewTabs.TabIndex = 0;
             this.MDFileViewTabs.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.MDFileViewTabs_DrawItem);
             this.MDFileViewTabs.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MDFileViewTabs_MouseClick);
             // 
             // MainView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1181, 725);
             this.Controls.Add(this.splitContainer1);
+            this.DoubleBuffered = true;
             this.Name = "MainView";
-            this.Text = "MainView";
             this.Load += new System.EventHandler(this.MainView_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

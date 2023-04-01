@@ -125,7 +125,7 @@ namespace SCAuditStudio
             string fileName = MDFileList.Nodes[MDFileList.SelectedNode.Index].Text;
 
             //Return if Tab already opened
-            if (TabInCollection(fileName)) return;
+            if (TabInCollection(fileName) || !fileName.EndsWith(".md")) return;
 
             //Create Tab and add WebView
             TabPage page = new(fileName);
