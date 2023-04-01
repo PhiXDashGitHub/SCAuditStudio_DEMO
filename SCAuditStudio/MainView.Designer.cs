@@ -28,10 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.MDFileList = new System.Windows.Forms.TreeView();
+            this.MDFileListContext = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.moveToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.invalidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.issueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.highToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.markIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unmarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asBestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MDFileViewTabs = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -40,6 +52,7 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.MDFileListContext.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -66,9 +79,85 @@
             // 
             // MDFileList
             // 
+            this.MDFileList.ContextMenuStrip = this.MDFileListContext;
             resources.ApplyResources(this.MDFileList, "MDFileList");
             this.MDFileList.Name = "MDFileList";
             this.MDFileList.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.MDFileList_ViewElement);
+            // 
+            // MDFileListContext
+            // 
+            this.MDFileListContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.moveToToolStripMenuItem,
+            this.generateIssueToolStripMenuItem,
+            this.markIssueToolStripMenuItem});
+            this.MDFileListContext.Name = "contextMenuStrip1";
+            resources.ApplyResources(this.MDFileListContext, "MDFileListContext");
+            // 
+            // moveToToolStripMenuItem
+            // 
+            this.moveToToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rootToolStripMenuItem,
+            this.invalidToolStripMenuItem,
+            this.issueToolStripMenuItem});
+            this.moveToToolStripMenuItem.Name = "moveToToolStripMenuItem";
+            resources.ApplyResources(this.moveToToolStripMenuItem, "moveToToolStripMenuItem");
+            // 
+            // rootToolStripMenuItem
+            // 
+            this.rootToolStripMenuItem.Name = "rootToolStripMenuItem";
+            resources.ApplyResources(this.rootToolStripMenuItem, "rootToolStripMenuItem");
+            this.rootToolStripMenuItem.Click += new System.EventHandler(this.MDFileListMoveToRoot);
+            // 
+            // invalidToolStripMenuItem
+            // 
+            this.invalidToolStripMenuItem.Name = "invalidToolStripMenuItem";
+            resources.ApplyResources(this.invalidToolStripMenuItem, "invalidToolStripMenuItem");
+            this.invalidToolStripMenuItem.Click += new System.EventHandler(this.MDFileListMoveToInvalid);
+            // 
+            // issueToolStripMenuItem
+            // 
+            this.issueToolStripMenuItem.Name = "issueToolStripMenuItem";
+            resources.ApplyResources(this.issueToolStripMenuItem, "issueToolStripMenuItem");
+            // 
+            // generateIssueToolStripMenuItem
+            // 
+            this.generateIssueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mediumToolStripMenuItem,
+            this.highToolStripMenuItem});
+            this.generateIssueToolStripMenuItem.Name = "generateIssueToolStripMenuItem";
+            resources.ApplyResources(this.generateIssueToolStripMenuItem, "generateIssueToolStripMenuItem");
+            // 
+            // mediumToolStripMenuItem
+            // 
+            this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
+            resources.ApplyResources(this.mediumToolStripMenuItem, "mediumToolStripMenuItem");
+            this.mediumToolStripMenuItem.Click += new System.EventHandler(this.MDFileListGenerateMediumIssue);
+            // 
+            // highToolStripMenuItem
+            // 
+            this.highToolStripMenuItem.Name = "highToolStripMenuItem";
+            resources.ApplyResources(this.highToolStripMenuItem, "highToolStripMenuItem");
+            this.highToolStripMenuItem.Click += new System.EventHandler(this.MDFileListGenerateHighIssue);
+            // 
+            // markIssueToolStripMenuItem
+            // 
+            this.markIssueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.unmarkToolStripMenuItem,
+            this.asBestToolStripMenuItem});
+            this.markIssueToolStripMenuItem.Name = "markIssueToolStripMenuItem";
+            resources.ApplyResources(this.markIssueToolStripMenuItem, "markIssueToolStripMenuItem");
+            // 
+            // unmarkToolStripMenuItem
+            // 
+            this.unmarkToolStripMenuItem.Name = "unmarkToolStripMenuItem";
+            resources.ApplyResources(this.unmarkToolStripMenuItem, "unmarkToolStripMenuItem");
+            this.unmarkToolStripMenuItem.Click += new System.EventHandler(this.MDFileListUnmark);
+            // 
+            // asBestToolStripMenuItem
+            // 
+            this.asBestToolStripMenuItem.Name = "asBestToolStripMenuItem";
+            resources.ApplyResources(this.asBestToolStripMenuItem, "asBestToolStripMenuItem");
+            this.asBestToolStripMenuItem.Click += new System.EventHandler(this.MDFileListMarkAsBest);
             // 
             // MDFileViewTabs
             // 
@@ -94,6 +183,7 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.MDFileListContext.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -104,5 +194,16 @@
         private SplitContainer splitContainer2;
         private TreeView MDFileList;
         private TabControl MDFileViewTabs;
+        private ContextMenuStrip MDFileListContext;
+        private ToolStripMenuItem moveToToolStripMenuItem;
+        private ToolStripMenuItem rootToolStripMenuItem;
+        private ToolStripMenuItem invalidToolStripMenuItem;
+        private ToolStripMenuItem generateIssueToolStripMenuItem;
+        private ToolStripMenuItem mediumToolStripMenuItem;
+        private ToolStripMenuItem highToolStripMenuItem;
+        private ToolStripMenuItem markIssueToolStripMenuItem;
+        private ToolStripMenuItem unmarkToolStripMenuItem;
+        private ToolStripMenuItem asBestToolStripMenuItem;
+        private ToolStripMenuItem issueToolStripMenuItem;
     }
 }

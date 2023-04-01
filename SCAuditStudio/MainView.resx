@@ -74,6 +74,78 @@
   <data name="splitContainer2.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <metadata name="MDFileListContext.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="rootToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 22</value>
+  </data>
+  <data name="rootToolStripMenuItem.Text" xml:space="preserve">
+    <value>Root</value>
+  </data>
+  <data name="invalidToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 22</value>
+  </data>
+  <data name="invalidToolStripMenuItem.Text" xml:space="preserve">
+    <value>Invalid</value>
+  </data>
+  <data name="issueToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 22</value>
+  </data>
+  <data name="issueToolStripMenuItem.Text" xml:space="preserve">
+    <value>Issue</value>
+  </data>
+  <data name="moveToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 22</value>
+  </data>
+  <data name="moveToToolStripMenuItem.Text" xml:space="preserve">
+    <value>Move to</value>
+  </data>
+  <data name="mediumToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 22</value>
+  </data>
+  <data name="mediumToolStripMenuItem.Text" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="highToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 22</value>
+  </data>
+  <data name="highToolStripMenuItem.Text" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="generateIssueToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 22</value>
+  </data>
+  <data name="generateIssueToolStripMenuItem.Text" xml:space="preserve">
+    <value>Generate Issue</value>
+  </data>
+  <data name="unmarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 22</value>
+  </data>
+  <data name="unmarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>Unmark</value>
+  </data>
+  <data name="asBestToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 22</value>
+  </data>
+  <data name="asBestToolStripMenuItem.Text" xml:space="preserve">
+    <value>As Best</value>
+  </data>
+  <data name="markIssueToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 22</value>
+  </data>
+  <data name="markIssueToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mark Issue</value>
+  </data>
+  <data name="MDFileListContext.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 70</value>
+  </data>
+  <data name="&gt;&gt;MDFileListContext.Name" xml:space="preserve">
+    <value>MDFileListContext</value>
+  </data>
+  <data name="&gt;&gt;MDFileListContext.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="MDFileList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -214,7 +286,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;splitContainer1.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -227,6 +299,66 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>MainView</value>
+  </data>
+  <data name="&gt;&gt;moveToToolStripMenuItem.Name" xml:space="preserve">
+    <value>moveToToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;moveToToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rootToolStripMenuItem.Name" xml:space="preserve">
+    <value>rootToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;rootToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;invalidToolStripMenuItem.Name" xml:space="preserve">
+    <value>invalidToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;invalidToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;issueToolStripMenuItem.Name" xml:space="preserve">
+    <value>issueToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;issueToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;generateIssueToolStripMenuItem.Name" xml:space="preserve">
+    <value>generateIssueToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;generateIssueToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mediumToolStripMenuItem.Name" xml:space="preserve">
+    <value>mediumToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mediumToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;highToolStripMenuItem.Name" xml:space="preserve">
+    <value>highToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;highToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;markIssueToolStripMenuItem.Name" xml:space="preserve">
+    <value>markIssueToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;markIssueToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;unmarkToolStripMenuItem.Name" xml:space="preserve">
+    <value>unmarkToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;unmarkToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;asBestToolStripMenuItem.Name" xml:space="preserve">
+    <value>asBestToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;asBestToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainView</value>
