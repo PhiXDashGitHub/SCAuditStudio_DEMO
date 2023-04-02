@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SCAuditStudio.StaticCompareClasses
+﻿namespace SCAuditStudio
 {
-    internal class StaticStringOperations
+    class StaticStringOperations
     {
         //returns value between 0 and 1, 1 means it includes all blacklistedwords
-        static float CheckForBlackList(MDFile issue, string blackList)
+        public float CheckForBlackList(MDFile issue, string blackList)
         {
             float blackListScore = 1;
             float totalWordsFound = 0;
@@ -45,13 +39,13 @@ namespace SCAuditStudio.StaticCompareClasses
             }
             return blackListScore;
         }
-        static float StaticCompareString(string title1, string title2)
+        public float StaticCompareString(string title1, string title2)
         {
             float damerauLevenshteinDistance = GetDamerauLevenshteinDistance(title1, title2);
             float staticDistance = title1.Length > title2.Length ? damerauLevenshteinDistance / title1.Length : damerauLevenshteinDistance / title2.Length;
             return staticDistance;
         }
-        public static int GetDamerauLevenshteinDistance(string s, string t)
+        public int GetDamerauLevenshteinDistance(string s, string t)
         {
             if (string.IsNullOrEmpty(s))
             {

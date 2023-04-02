@@ -1,17 +1,12 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SCAuditStudio.AIClasses
+namespace SCAuditStudio
 {
-    internal class AISort
+    class AISort
     {
         const string key = "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";
         const string url = "https://api.openai.com/v1/chat/completions";
-        async static Task<string> AskGPT(string input)
+        public async Task<string> AskGPT(string input)
         {
             // Initialise the chat by describing the assistant
             var messages = new List<dynamic>

@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SCAuditStudio.SortDirectoryClasses
+﻿namespace SCAuditStudio
 {
-    internal class AutoDirectorySort
+    class AutoDirectorySort
     {
-        static async Task<int> GetScore(MDFile issue, string criteria, string context)
+        public static async Task<int> GetScore(MDFile issue, string criteria, string context)
         {
             int qualtityScore = 1;
             float blackListScore = 0;
             double blacklistpenalty = 0.2f;
             double AIpenalty = 0.5f;
-
+            StaticStringOperations staticStringOperations = new StaticStringOperations();
+            AISort aISort = new AISort();
             //Perform Static Checks
             if (issue.impact.Length < 10 || issue.detail.Length < 10 || issue.code.Length < 1)
             {
@@ -25,7 +20,8 @@ namespace SCAuditStudio.SortDirectoryClasses
             {
                 qualtityScore = qualtityScore + issue.impact.Length + issue.detail.Length + issue.code.Length;
             }
-            blackListScore = CheckForBlackList(issue, File.ReadAllText(Application.StartupPath + "./blacklist.txt"));
+            
+            blackListScore = staticStringOperations.CheckForBlackList(issue, File.ReadAllText(Application.StartupPath + "./blacklist.txt"));
             if (blackListScore == 0.1)
             {
                 qualtityScore -= Convert.ToInt16(qualtityScore * blacklistpenalty);
@@ -44,7 +40,7 @@ namespace SCAuditStudio.SortDirectoryClasses
             userMessage[5] = "Vurnability Impact: \n" + issue.impact;
 
             var userMessageS = userMessage.ToSingle();
-            string response = await AskGPT(userMessageS);
+            string response = await aISort.AskGPT(userMessageS);
 
             if (response.Contains("Invalid1"))
             {
@@ -69,9 +65,11 @@ namespace SCAuditStudio.SortDirectoryClasses
             float titleweight = 0.3f;
             float titlescore = 0;
             float contentweight = 0.7f;
+            StaticStringOperations staticStringOperations = new StaticStringOperations();
+            AISort aISort = new AISort();
 
             //Static compare title
-            float staticDistanceTitle = StaticCompareString(title1, title2);
+            float staticDistanceTitle = staticStringOperations.StaticCompareString(title1, title2);
             if (staticDistanceTitle < 0.2)
             {
                 titleweight = 0.6f;
@@ -86,7 +84,7 @@ namespace SCAuditStudio.SortDirectoryClasses
                 userMessage[3] = "Title 2: \n" + title2;
 
                 var userMessageS = userMessage.ToSingle();
-                string response = await AskGPT(userMessageS);
+                string response = await aISort.AskGPT(userMessageS);
 
                 if (response.Contains("Same") || response.Contains("Similar"))
                 {
@@ -99,7 +97,7 @@ namespace SCAuditStudio.SortDirectoryClasses
                 }
             }
             //Static compare content
-            float staticDistanceContent = StaticCompareString(content1, content2);
+            float staticDistanceContent = staticStringOperations.StaticCompareString(content1, content2);
             if (staticDistanceContent < 0.3)
             {
                 return true;
@@ -113,7 +111,7 @@ namespace SCAuditStudio.SortDirectoryClasses
                 userMessage[3] = "Vulnability2: \n" + content2;
 
                 var userMessageS = userMessage.ToSingle();
-                string response = await AskGPT(userMessageS);
+                string response = await aISort.AskGPT(userMessageS);
 
                 if (response.Contains("Same") || response.Contains("Similar"))
                 {
