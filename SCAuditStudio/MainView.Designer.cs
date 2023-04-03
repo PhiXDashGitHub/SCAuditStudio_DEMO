@@ -280,6 +280,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            this.splitContainer1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MDFileList_MouseDown);
             // 
             // splitContainer2
             // 
@@ -293,12 +294,14 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.MDFileViewTabs);
+            this.splitContainer2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MDFileList_MouseDown);
             // 
             // MDFileList
             // 
             this.MDFileList.ContextMenuStrip = this.MDFileListContext;
             resources.ApplyResources(this.MDFileList, "MDFileList");
             this.MDFileList.Name = "MDFileList";
+            this.MDFileList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MDFileList_MouseDown);
             // 
             // MDFileViewTabs
             // 
@@ -306,6 +309,7 @@
             this.MDFileViewTabs.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.MDFileViewTabs.Name = "MDFileViewTabs";
             this.MDFileViewTabs.SelectedIndex = 0;
+            this.MDFileViewTabs.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MDFileList_MouseDown);
             // 
             // MainView
             // 

@@ -191,6 +191,10 @@ namespace SCAuditStudio
 
             UpdateFileTree();
         }
+        void MDFileList_MouseDown(object sender, MouseEventArgs e)
+        {
+            MDFileList.SelectedNode = MDFileList.GetNodeAt(new Point(e.X, e.Y));
+        }
         public async void MDFileList_ViewElement(object sender, TreeNodeMouseClickEventArgs e)
         {
             string fileName = ((MDTreeNode)MDFileList.SelectedNode).name;
