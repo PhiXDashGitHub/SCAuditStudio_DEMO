@@ -1,36 +1,13 @@
 ﻿namespace SCAuditStudio
 {
-    class AutoDirectorySort
+    static class AutoDirectorySort
     {
-        public static async Task<int> GetScore(MDFile issue, string criteria, string context)
+        public static async Task<int> GetScore(MDFile issue, string criteria, string context, int avgIssueTextLength)
         {
-            int qualtityScore = 1;
-            float blackListScore = 0;
-            double blacklistpenalty = 0.2f;
-            double AIpenalty = 0.5f;
-            StaticStringOperations staticStringOperations = new StaticStringOperations();
-            AISort aISort = new AISort();
             //Perform Static Checks
-            if (issue.impact.Length < 10 || issue.detail.Length < 10 || issue.code.Length < 1)
-            {
-                qualtityScore = 0;
-                return qualtityScore;
-            }
-            else
-            {
-                qualtityScore = qualtityScore + issue.impact.Length + issue.detail.Length + issue.code.Length;
-            }
-            
-            blackListScore = staticStringOperations.CheckForBlackList(issue, File.ReadAllText(Application.StartupPath + "./blacklist.txt"));
-            if (blackListScore == 0.1)
-            {
-                qualtityScore -= Convert.ToInt16(qualtityScore * blacklistpenalty);
-            }
-            if (blackListScore > 0.1)
-            {
-                qualtityScore = 0;
-                return qualtityScore;
-            }
+            int staticScore = GetStaticScore(issue, avgIssueTextLength);
+
+            //Perform AI Checks
             string[] userMessage = new string[6];
             userMessage[0] = "Check if this Smart Contract Vurnability is an valid issue, only return: 'Invalid1' (if the issue is Invalid), 'Invalid2' (if there is a small chance the issue is Invalid), 'Valid' (if you are sure the issue is valid). Use following criteria and context:";
             userMessage[1] = "Criteria: \n" + criteria;
@@ -40,65 +17,27 @@
             userMessage[5] = "Vurnability Impact: \n" + issue.impact;
 
             var userMessageS = userMessage.ToSingle();
-            string response = await aISort.AskGPT(userMessageS);
+            string response = await AISort.AskGPT(userMessageS);
 
             if (response.Contains("Invalid1"))
             {
-                qualtityScore = 0;
+                staticScore *= 0;
             }
             if (response.Contains("Invalid2"))
             {
-                if (qualtityScore > 30)
-                {
-                    qualtityScore -= Convert.ToInt16(qualtityScore * AIpenalty);
-                }
+                staticScore *= 1;
             }
             if (response.Contains("Valid"))
             {
-                qualtityScore += Convert.ToInt16(qualtityScore * AIpenalty);
+                staticScore *= 2;
             }
-            return qualtityScore;
+            return staticScore;
         }
 
         static async Task<bool> CompareIssues(string title1, string title2, string content1, string content2, string context)
         {
-            float titleweight = 0.3f;
-            float titlescore = 0;
-            float contentweight = 0.7f;
-            StaticStringOperations staticStringOperations = new StaticStringOperations();
-            AISort aISort = new AISort();
-
-            //Static compare title
-            float staticDistanceTitle = staticStringOperations.StaticCompareString(title1, title2);
-            if (staticDistanceTitle < 0.2)
-            {
-                titleweight = 0.6f;
-                titlescore = 1 - staticDistanceTitle;
-            }
-            else
-            {
-                string[] userMessage = new string[4];
-                userMessage[0] = "Compare these two Smart Contract Vurnabilitys Titles, only return one of these categorys: Same (if they are identical),Similar (if they they have something in common), Different(if they have nothing in common) use following context:";
-                userMessage[1] = "Context: \n" + context;
-                userMessage[2] = "Title 1: \n" + title1;
-                userMessage[3] = "Title 2: \n" + title2;
-
-                var userMessageS = userMessage.ToSingle();
-                string response = await aISort.AskGPT(userMessageS);
-
-                if (response.Contains("Same") || response.Contains("Similar"))
-                {
-                    titleweight = 0.6f;
-                    titlescore = 1;
-                }
-                if (response.Contains("Different"))
-                {
-                    titlescore = 0.1f;
-                }
-            }
-            //Static compare content
-            float staticDistanceContent = staticStringOperations.StaticCompareString(content1, content2);
-            if (staticDistanceContent < 0.3)
+            float staticDistance = CompareIssuesStatic(title1, title2, content1, content2);
+            if (staticDistance < 0.5)
             {
                 return true;
             }
@@ -111,33 +50,35 @@
                 userMessage[3] = "Vulnability2: \n" + content2;
 
                 var userMessageS = userMessage.ToSingle();
-                string response = await aISort.AskGPT(userMessageS);
+                string response = await AISort.AskGPT(userMessageS);
 
                 if (response.Contains("Same") || response.Contains("Similar"))
                 {
                     return true;
                 }
                 if (response.Contains("Different"))
-                {
-                    float totalscore = 0;
-                    totalscore = (titleweight * titlescore) + (contentweight * 0.3f);
-                    if (totalscore > 0.5f)
-                    {
-                        return true;
-                    }
+                {      
                     return false;
                 }
                 return false;
             }
         }
 
-        static async Task<int> GetStaticScore()
+        static int GetStaticScore(MDFile issue,int avgIssueTextLength)
         {
-            return 0;
+            int totallength = issue.impact.Length + issue.detail.Length + issue.summary.Length;
+            int blackListScore = StaticStringOperations.CheckForBlackList(issue, File.ReadAllText(Application.StartupPath + "./blacklist.txt"));
+            int totalscore = Convert.ToInt16((totallength / avgIssueTextLength) + issue.impact.Length + blackListScore);
+            return totalscore;
         }
-        static async Task<bool> CompareIssuesStatic()
+        static float CompareIssuesStatic(string title1, string title2, string content1, string content2)
         {
-            return false;
+            //Static compare title
+            float staticDistanceTitle = StaticStringOperations.StaticCompareString(title1, title2);
+
+            //Static compare content
+            float staticDistanceContent = StaticStringOperations.StaticCompareString(content1, content2);
+            return staticDistanceTitle + staticDistanceContent;
         }
     }
 }

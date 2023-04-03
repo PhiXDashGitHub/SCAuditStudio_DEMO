@@ -1,13 +1,11 @@
 ﻿namespace SCAuditStudio
 {
-    class StaticStringOperations
+    static class StaticStringOperations
     {
-        //returns value between 0 and 1, 1 means it includes all blacklistedwords
-        public float CheckForBlackList(MDFile issue, string blackList)
+        //Returns amount of blacklisted words used in Issue
+        public static int CheckForBlackList(MDFile issue, string blackList)
         {
-            float blackListScore = 1;
-            float totalWordsFound = 0;
-            int badWordthreshold = 5;
+            int totalWordsFound = 0;
             string[] blackListWords = blackList.Split(',');
 
             for (int i = 0; i < blackListWords.Length; i++)
@@ -27,25 +25,23 @@
             }
             if (totalWordsFound == 0)
             {
-                blackListScore = 0;
+                return 0;
             }
             else if (blackListWords.Length > totalWordsFound)
             {
-                if (totalWordsFound >= badWordthreshold)
-                {
-                    blackListScore = 1 - (totalWordsFound / blackListWords.Length);
-                }
-                blackListScore = 0.1f;
+                return totalWordsFound;
             }
-            return blackListScore;
+            return 0;
         }
-        public float StaticCompareString(string title1, string title2)
+        //Returns float between 0 and 1, 0 when same, 1 when different
+        public static float StaticCompareString(string title1, string title2)
         {
             float damerauLevenshteinDistance = GetDamerauLevenshteinDistance(title1, title2);
             float staticDistance = title1.Length > title2.Length ? damerauLevenshteinDistance / title1.Length : damerauLevenshteinDistance / title2.Length;
             return staticDistance;
         }
-        public int GetDamerauLevenshteinDistance(string s, string t)
+        //Returns 0 if the same, returns lenght of longer string if everything is different 
+        public static int GetDamerauLevenshteinDistance(string s, string t)
         {
             if (string.IsNullOrEmpty(s))
             {

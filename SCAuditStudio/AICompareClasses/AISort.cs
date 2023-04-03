@@ -2,11 +2,11 @@
 
 namespace SCAuditStudio
 {
-    class AISort
+    static class AISort
     {
         const string key = "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";
         const string url = "https://api.openai.com/v1/chat/completions";
-        public async Task<string> AskGPT(string input)
+        public static async Task<string> AskGPT(string input)
         {
             // Initialise the chat by describing the assistant
             var messages = new List<dynamic>
