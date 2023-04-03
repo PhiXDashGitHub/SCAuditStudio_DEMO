@@ -90,6 +90,7 @@
             this.MDFileList.ContextMenuStrip = this.MDFileListContext;
             resources.ApplyResources(this.MDFileList, "MDFileList");
             this.MDFileList.Name = "MDFileList";
+            this.MDFileList.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.MDFileList_ViewElement);
             // 
             // MDFileListContext
             // 

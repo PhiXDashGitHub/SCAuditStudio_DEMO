@@ -11,6 +11,8 @@ namespace SCAuditStudio
         public MainView()
         {
             InitializeComponent();
+
+            mdManager = new(ProjectDirectory);
         }
 
         /* PUBLIC FUNCTIONS */
@@ -40,7 +42,8 @@ namespace SCAuditStudio
             if (!fileName.EndsWith(".md")) { return; }
 
             //Read MD file raw
-            string md = "PLEASE REPLACE ME";
+            string? md = mdManager.GetFile(fileName)?.rawContent;
+            if (md == null) return;
             md = md.Split("\n").Skip(4).ToArray().ToSingle();
 
             //Convert to html and add some formatting
@@ -75,7 +78,6 @@ namespace SCAuditStudio
         /* EVENTS */
         async void MainView_Load(object sender, EventArgs e)
         {
-            mdManager = new(ProjectDirectory);
             await mdManager.LoadFilesAsync();
 
             UpdateFileTree();
@@ -118,8 +120,6 @@ namespace SCAuditStudio
         }
         void MDFileListMoveToRoot(object sender, EventArgs e)
         {
-            Console.WriteLine("Move file to root");
-
             string file = ((MDTreeNode)MDFileList.SelectedNode).name;
             if (!file.EndsWith(".md")) return;
 

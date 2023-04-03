@@ -138,43 +138,43 @@
     <value>Mark Issue</value>
   </data>
   <data name="clearToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>121, 22</value>
   </data>
   <data name="clearToolStripMenuItem.Text" xml:space="preserve">
     <value>Clear</value>
   </data>
   <data name="redToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>121, 22</value>
   </data>
   <data name="redToolStripMenuItem.Text" xml:space="preserve">
     <value>Red</value>
   </data>
   <data name="orangeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>121, 22</value>
   </data>
   <data name="orangeToolStripMenuItem.Text" xml:space="preserve">
     <value>Orange</value>
   </data>
   <data name="yellowToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>121, 22</value>
   </data>
   <data name="yellowToolStripMenuItem1.Text" xml:space="preserve">
     <value>Yellow</value>
   </data>
   <data name="greenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>121, 22</value>
   </data>
   <data name="greenToolStripMenuItem.Text" xml:space="preserve">
     <value>Lime</value>
   </data>
   <data name="blueToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>121, 22</value>
   </data>
   <data name="blueToolStripMenuItem.Text" xml:space="preserve">
     <value>Blue</value>
   </data>
   <data name="magentaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>121, 22</value>
   </data>
   <data name="magentaToolStripMenuItem.Text" xml:space="preserve">
     <value>Magenta</value>
