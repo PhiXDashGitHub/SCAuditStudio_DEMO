@@ -30,9 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.MDFileList = new System.Windows.Forms.TreeView();
             this.MDFileListContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.moveToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,7 +49,21 @@
             this.greenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.magentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.automationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aISortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aIScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.staticSortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.staticScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.MDFileList = new System.Windows.Forms.TreeView();
             this.MDFileViewTabs = new System.Windows.Forms.TabControl();
+            this.MDFileListContext.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -60,37 +71,7 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.MDFileListContext.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // splitContainer1
-            // 
-            resources.ApplyResources(this.splitContainer1, "splitContainer1");
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            // 
-            // splitContainer2
-            // 
-            resources.ApplyResources(this.splitContainer2, "splitContainer2");
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.MDFileList);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.MDFileViewTabs);
-            // 
-            // MDFileList
-            // 
-            this.MDFileList.ContextMenuStrip = this.MDFileListContext;
-            resources.ApplyResources(this.MDFileList, "MDFileList");
-            this.MDFileList.Name = "MDFileList";
-            this.MDFileList.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.MDFileList_ViewElement);
             // 
             // MDFileListContext
             // 
@@ -235,23 +216,110 @@
             resources.ApplyResources(this.magentaToolStripMenuItem, "magentaToolStripMenuItem");
             this.magentaToolStripMenuItem.Click += new System.EventHandler(this.MDFileListHighlight);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.optionsToolStripMenuItem,
+            this.automationToolStripMenuItem});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
+            this.menuStrip1.Name = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optionsToolStripMenuItem1});
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            resources.ApplyResources(this.optionsToolStripMenuItem, "optionsToolStripMenuItem");
+            // 
+            // optionsToolStripMenuItem1
+            // 
+            this.optionsToolStripMenuItem1.Name = "optionsToolStripMenuItem1";
+            resources.ApplyResources(this.optionsToolStripMenuItem1, "optionsToolStripMenuItem1");
+            // 
+            // automationToolStripMenuItem
+            // 
+            this.automationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aISortToolStripMenuItem,
+            this.aIScoreToolStripMenuItem,
+            this.staticSortToolStripMenuItem,
+            this.staticScoreToolStripMenuItem});
+            this.automationToolStripMenuItem.Name = "automationToolStripMenuItem";
+            resources.ApplyResources(this.automationToolStripMenuItem, "automationToolStripMenuItem");
+            // 
+            // aISortToolStripMenuItem
+            // 
+            this.aISortToolStripMenuItem.Name = "aISortToolStripMenuItem";
+            resources.ApplyResources(this.aISortToolStripMenuItem, "aISortToolStripMenuItem");
+            // 
+            // aIScoreToolStripMenuItem
+            // 
+            this.aIScoreToolStripMenuItem.Name = "aIScoreToolStripMenuItem";
+            resources.ApplyResources(this.aIScoreToolStripMenuItem, "aIScoreToolStripMenuItem");
+            // 
+            // staticSortToolStripMenuItem
+            // 
+            this.staticSortToolStripMenuItem.Name = "staticSortToolStripMenuItem";
+            resources.ApplyResources(this.staticSortToolStripMenuItem, "staticSortToolStripMenuItem");
+            // 
+            // staticScoreToolStripMenuItem
+            // 
+            this.staticScoreToolStripMenuItem.Name = "staticScoreToolStripMenuItem";
+            resources.ApplyResources(this.staticScoreToolStripMenuItem, "staticScoreToolStripMenuItem");
+            // 
+            // splitContainer1
+            // 
+            resources.ApplyResources(this.splitContainer1, "splitContainer1");
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            // 
+            // splitContainer2
+            // 
+            resources.ApplyResources(this.splitContainer2, "splitContainer2");
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.MDFileList);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.MDFileViewTabs);
+            // 
+            // MDFileList
+            // 
+            this.MDFileList.ContextMenuStrip = this.MDFileListContext;
+            resources.ApplyResources(this.MDFileList, "MDFileList");
+            this.MDFileList.Name = "MDFileList";
+            // 
             // MDFileViewTabs
             // 
             resources.ApplyResources(this.MDFileViewTabs, "MDFileViewTabs");
             this.MDFileViewTabs.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.MDFileViewTabs.Name = "MDFileViewTabs";
             this.MDFileViewTabs.SelectedIndex = 0;
-            this.MDFileViewTabs.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.MDFileViewTabs_DrawItem);
-            this.MDFileViewTabs.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MDFileViewTabs_MouseClick);
             // 
             // MainView
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainView";
             this.Load += new System.EventHandler(this.MainView_Load);
+            this.MDFileListContext.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -259,17 +327,12 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.MDFileListContext.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private SplitContainer splitContainer1;
-        private SplitContainer splitContainer2;
-        private TreeView MDFileList;
-        private TabControl MDFileViewTabs;
         private ContextMenuStrip MDFileListContext;
         private ToolStripMenuItem moveToToolStripMenuItem;
         private ToolStripMenuItem rootToolStripMenuItem;
@@ -289,5 +352,18 @@
         private ToolStripMenuItem greenToolStripMenuItem;
         private ToolStripMenuItem blueToolStripMenuItem;
         private ToolStripMenuItem magentaToolStripMenuItem;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem optionsToolStripMenuItem;
+        private ToolStripMenuItem automationToolStripMenuItem;
+        private ToolStripMenuItem aISortToolStripMenuItem;
+        private ToolStripMenuItem aIScoreToolStripMenuItem;
+        private ToolStripMenuItem staticSortToolStripMenuItem;
+        private ToolStripMenuItem staticScoreToolStripMenuItem;
+        private ToolStripMenuItem optionsToolStripMenuItem1;
+        private SplitContainer splitContainer1;
+        private SplitContainer splitContainer2;
+        private TreeView MDFileList;
+        private TabControl MDFileViewTabs;
     }
 }
