@@ -28,314 +28,288 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
-            this.MDFileListContext = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.moveToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.invalidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.issueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generateIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.highToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.markIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unmarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.asBestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.highlightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.redToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.orangeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.yellowToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.greenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.blueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.magentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.automationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aISortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aIScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.staticSortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.staticScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.MDFileList = new System.Windows.Forms.TreeView();
-            this.MDFileViewTabs = new System.Windows.Forms.TabControl();
-            this.MDFileListContext.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            this.SuspendLayout();
+            MDFileListContext = new ContextMenuStrip(components);
+            moveToToolStripMenuItem = new ToolStripMenuItem();
+            rootToolStripMenuItem = new ToolStripMenuItem();
+            invalidToolStripMenuItem = new ToolStripMenuItem();
+            issueToolStripMenuItem = new ToolStripMenuItem();
+            generateIssueToolStripMenuItem = new ToolStripMenuItem();
+            mediumToolStripMenuItem = new ToolStripMenuItem();
+            highToolStripMenuItem = new ToolStripMenuItem();
+            markIssueToolStripMenuItem = new ToolStripMenuItem();
+            unmarkToolStripMenuItem = new ToolStripMenuItem();
+            asBestToolStripMenuItem = new ToolStripMenuItem();
+            highlightToolStripMenuItem = new ToolStripMenuItem();
+            clearToolStripMenuItem = new ToolStripMenuItem();
+            redToolStripMenuItem = new ToolStripMenuItem();
+            orangeToolStripMenuItem = new ToolStripMenuItem();
+            yellowToolStripMenuItem1 = new ToolStripMenuItem();
+            greenToolStripMenuItem = new ToolStripMenuItem();
+            blueToolStripMenuItem = new ToolStripMenuItem();
+            magentaToolStripMenuItem = new ToolStripMenuItem();
+            menuStrip1 = new MenuStrip();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            optionsToolStripMenuItem = new ToolStripMenuItem();
+            optionsToolStripMenuItem1 = new ToolStripMenuItem();
+            automationToolStripMenuItem = new ToolStripMenuItem();
+            aISortToolStripMenuItem = new ToolStripMenuItem();
+            aIScoreToolStripMenuItem = new ToolStripMenuItem();
+            staticSortToolStripMenuItem = new ToolStripMenuItem();
+            staticScoreToolStripMenuItem = new ToolStripMenuItem();
+            splitContainer1 = new SplitContainer();
+            splitContainer2 = new SplitContainer();
+            MDFileList = new TreeView();
+            MDFileViewTabs = new TabControl();
+            MDFileListContext.SuspendLayout();
+            menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
+            splitContainer2.Panel1.SuspendLayout();
+            splitContainer2.Panel2.SuspendLayout();
+            splitContainer2.SuspendLayout();
+            SuspendLayout();
             // 
             // MDFileListContext
             // 
-            this.MDFileListContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.moveToToolStripMenuItem,
-            this.generateIssueToolStripMenuItem,
-            this.markIssueToolStripMenuItem,
-            this.highlightToolStripMenuItem});
-            this.MDFileListContext.Name = "contextMenuStrip1";
-            resources.ApplyResources(this.MDFileListContext, "MDFileListContext");
+            MDFileListContext.Items.AddRange(new ToolStripItem[] { moveToToolStripMenuItem, generateIssueToolStripMenuItem, markIssueToolStripMenuItem, highlightToolStripMenuItem });
+            MDFileListContext.Name = "contextMenuStrip1";
+            resources.ApplyResources(MDFileListContext, "MDFileListContext");
             // 
             // moveToToolStripMenuItem
             // 
-            this.moveToToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rootToolStripMenuItem,
-            this.invalidToolStripMenuItem,
-            this.issueToolStripMenuItem});
-            this.moveToToolStripMenuItem.Name = "moveToToolStripMenuItem";
-            resources.ApplyResources(this.moveToToolStripMenuItem, "moveToToolStripMenuItem");
+            moveToToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { rootToolStripMenuItem, invalidToolStripMenuItem, issueToolStripMenuItem });
+            moveToToolStripMenuItem.Name = "moveToToolStripMenuItem";
+            resources.ApplyResources(moveToToolStripMenuItem, "moveToToolStripMenuItem");
             // 
             // rootToolStripMenuItem
             // 
-            this.rootToolStripMenuItem.Name = "rootToolStripMenuItem";
-            resources.ApplyResources(this.rootToolStripMenuItem, "rootToolStripMenuItem");
-            this.rootToolStripMenuItem.Click += new System.EventHandler(this.MDFileListMoveToRoot);
+            rootToolStripMenuItem.Name = "rootToolStripMenuItem";
+            resources.ApplyResources(rootToolStripMenuItem, "rootToolStripMenuItem");
+            rootToolStripMenuItem.Click += MDFileListMoveToRoot;
             // 
             // invalidToolStripMenuItem
             // 
-            this.invalidToolStripMenuItem.Name = "invalidToolStripMenuItem";
-            resources.ApplyResources(this.invalidToolStripMenuItem, "invalidToolStripMenuItem");
-            this.invalidToolStripMenuItem.Click += new System.EventHandler(this.MDFileListMoveToInvalid);
+            invalidToolStripMenuItem.Name = "invalidToolStripMenuItem";
+            resources.ApplyResources(invalidToolStripMenuItem, "invalidToolStripMenuItem");
+            invalidToolStripMenuItem.Click += MDFileListMoveToInvalid;
             // 
             // issueToolStripMenuItem
             // 
-            this.issueToolStripMenuItem.Name = "issueToolStripMenuItem";
-            resources.ApplyResources(this.issueToolStripMenuItem, "issueToolStripMenuItem");
+            issueToolStripMenuItem.Name = "issueToolStripMenuItem";
+            resources.ApplyResources(issueToolStripMenuItem, "issueToolStripMenuItem");
             // 
             // generateIssueToolStripMenuItem
             // 
-            this.generateIssueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mediumToolStripMenuItem,
-            this.highToolStripMenuItem});
-            this.generateIssueToolStripMenuItem.Name = "generateIssueToolStripMenuItem";
-            resources.ApplyResources(this.generateIssueToolStripMenuItem, "generateIssueToolStripMenuItem");
+            generateIssueToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { mediumToolStripMenuItem, highToolStripMenuItem });
+            generateIssueToolStripMenuItem.Name = "generateIssueToolStripMenuItem";
+            resources.ApplyResources(generateIssueToolStripMenuItem, "generateIssueToolStripMenuItem");
             // 
             // mediumToolStripMenuItem
             // 
-            this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
-            resources.ApplyResources(this.mediumToolStripMenuItem, "mediumToolStripMenuItem");
-            this.mediumToolStripMenuItem.Click += new System.EventHandler(this.MDFileListGenerateMediumIssue);
+            mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
+            resources.ApplyResources(mediumToolStripMenuItem, "mediumToolStripMenuItem");
+            mediumToolStripMenuItem.Click += MDFileListGenerateMediumIssue;
             // 
             // highToolStripMenuItem
             // 
-            this.highToolStripMenuItem.Name = "highToolStripMenuItem";
-            resources.ApplyResources(this.highToolStripMenuItem, "highToolStripMenuItem");
-            this.highToolStripMenuItem.Click += new System.EventHandler(this.MDFileListGenerateHighIssue);
+            highToolStripMenuItem.Name = "highToolStripMenuItem";
+            resources.ApplyResources(highToolStripMenuItem, "highToolStripMenuItem");
+            highToolStripMenuItem.Click += MDFileListGenerateHighIssue;
             // 
             // markIssueToolStripMenuItem
             // 
-            this.markIssueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.unmarkToolStripMenuItem,
-            this.asBestToolStripMenuItem});
-            this.markIssueToolStripMenuItem.Name = "markIssueToolStripMenuItem";
-            resources.ApplyResources(this.markIssueToolStripMenuItem, "markIssueToolStripMenuItem");
+            markIssueToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { unmarkToolStripMenuItem, asBestToolStripMenuItem });
+            markIssueToolStripMenuItem.Name = "markIssueToolStripMenuItem";
+            resources.ApplyResources(markIssueToolStripMenuItem, "markIssueToolStripMenuItem");
             // 
             // unmarkToolStripMenuItem
             // 
-            this.unmarkToolStripMenuItem.Name = "unmarkToolStripMenuItem";
-            resources.ApplyResources(this.unmarkToolStripMenuItem, "unmarkToolStripMenuItem");
-            this.unmarkToolStripMenuItem.Click += new System.EventHandler(this.MDFileListUnmark);
+            unmarkToolStripMenuItem.Name = "unmarkToolStripMenuItem";
+            resources.ApplyResources(unmarkToolStripMenuItem, "unmarkToolStripMenuItem");
+            unmarkToolStripMenuItem.Click += MDFileListUnmark;
             // 
             // asBestToolStripMenuItem
             // 
-            this.asBestToolStripMenuItem.Name = "asBestToolStripMenuItem";
-            resources.ApplyResources(this.asBestToolStripMenuItem, "asBestToolStripMenuItem");
-            this.asBestToolStripMenuItem.Click += new System.EventHandler(this.MDFileListMarkAsBest);
+            asBestToolStripMenuItem.Name = "asBestToolStripMenuItem";
+            resources.ApplyResources(asBestToolStripMenuItem, "asBestToolStripMenuItem");
+            asBestToolStripMenuItem.Click += MDFileListMarkAsBest;
             // 
             // highlightToolStripMenuItem
             // 
-            this.highlightToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clearToolStripMenuItem,
-            this.redToolStripMenuItem,
-            this.orangeToolStripMenuItem,
-            this.yellowToolStripMenuItem1,
-            this.greenToolStripMenuItem,
-            this.blueToolStripMenuItem,
-            this.magentaToolStripMenuItem});
-            this.highlightToolStripMenuItem.Name = "highlightToolStripMenuItem";
-            resources.ApplyResources(this.highlightToolStripMenuItem, "highlightToolStripMenuItem");
-            this.highlightToolStripMenuItem.Click += new System.EventHandler(this.MDFileListHighlight);
+            highlightToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clearToolStripMenuItem, redToolStripMenuItem, orangeToolStripMenuItem, yellowToolStripMenuItem1, greenToolStripMenuItem, blueToolStripMenuItem, magentaToolStripMenuItem });
+            highlightToolStripMenuItem.Name = "highlightToolStripMenuItem";
+            resources.ApplyResources(highlightToolStripMenuItem, "highlightToolStripMenuItem");
+            highlightToolStripMenuItem.Click += MDFileListHighlight;
             // 
             // clearToolStripMenuItem
             // 
-            this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            resources.ApplyResources(this.clearToolStripMenuItem, "clearToolStripMenuItem");
-            this.clearToolStripMenuItem.Click += new System.EventHandler(this.MDFileListHighlight);
+            clearToolStripMenuItem.Name = "clearToolStripMenuItem";
+            resources.ApplyResources(clearToolStripMenuItem, "clearToolStripMenuItem");
+            clearToolStripMenuItem.Click += MDFileListHighlight;
             // 
             // redToolStripMenuItem
             // 
-            this.redToolStripMenuItem.BackColor = System.Drawing.Color.Red;
-            this.redToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.redToolStripMenuItem.Name = "redToolStripMenuItem";
-            resources.ApplyResources(this.redToolStripMenuItem, "redToolStripMenuItem");
-            this.redToolStripMenuItem.Click += new System.EventHandler(this.MDFileListHighlight);
+            redToolStripMenuItem.BackColor = Color.Red;
+            redToolStripMenuItem.ForeColor = Color.White;
+            redToolStripMenuItem.Name = "redToolStripMenuItem";
+            resources.ApplyResources(redToolStripMenuItem, "redToolStripMenuItem");
+            redToolStripMenuItem.Click += MDFileListHighlight;
             // 
             // orangeToolStripMenuItem
             // 
-            this.orangeToolStripMenuItem.BackColor = System.Drawing.Color.Orange;
-            this.orangeToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.orangeToolStripMenuItem.Name = "orangeToolStripMenuItem";
-            resources.ApplyResources(this.orangeToolStripMenuItem, "orangeToolStripMenuItem");
-            this.orangeToolStripMenuItem.Click += new System.EventHandler(this.MDFileListHighlight);
+            orangeToolStripMenuItem.BackColor = Color.Orange;
+            orangeToolStripMenuItem.ForeColor = Color.White;
+            orangeToolStripMenuItem.Name = "orangeToolStripMenuItem";
+            resources.ApplyResources(orangeToolStripMenuItem, "orangeToolStripMenuItem");
+            orangeToolStripMenuItem.Click += MDFileListHighlight;
             // 
             // yellowToolStripMenuItem1
             // 
-            this.yellowToolStripMenuItem1.BackColor = System.Drawing.Color.Yellow;
-            this.yellowToolStripMenuItem1.ForeColor = System.Drawing.Color.Black;
-            this.yellowToolStripMenuItem1.Name = "yellowToolStripMenuItem1";
-            resources.ApplyResources(this.yellowToolStripMenuItem1, "yellowToolStripMenuItem1");
-            this.yellowToolStripMenuItem1.Click += new System.EventHandler(this.MDFileListHighlight);
+            yellowToolStripMenuItem1.BackColor = Color.Yellow;
+            yellowToolStripMenuItem1.ForeColor = Color.Black;
+            yellowToolStripMenuItem1.Name = "yellowToolStripMenuItem1";
+            resources.ApplyResources(yellowToolStripMenuItem1, "yellowToolStripMenuItem1");
+            yellowToolStripMenuItem1.Click += MDFileListHighlight;
             // 
             // greenToolStripMenuItem
             // 
-            this.greenToolStripMenuItem.BackColor = System.Drawing.Color.Lime;
-            this.greenToolStripMenuItem.Name = "greenToolStripMenuItem";
-            resources.ApplyResources(this.greenToolStripMenuItem, "greenToolStripMenuItem");
-            this.greenToolStripMenuItem.Click += new System.EventHandler(this.MDFileListHighlight);
+            greenToolStripMenuItem.BackColor = Color.Lime;
+            greenToolStripMenuItem.Name = "greenToolStripMenuItem";
+            resources.ApplyResources(greenToolStripMenuItem, "greenToolStripMenuItem");
+            greenToolStripMenuItem.Click += MDFileListHighlight;
             // 
             // blueToolStripMenuItem
             // 
-            this.blueToolStripMenuItem.BackColor = System.Drawing.Color.Blue;
-            this.blueToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.blueToolStripMenuItem.Name = "blueToolStripMenuItem";
-            resources.ApplyResources(this.blueToolStripMenuItem, "blueToolStripMenuItem");
-            this.blueToolStripMenuItem.Click += new System.EventHandler(this.MDFileListHighlight);
+            blueToolStripMenuItem.BackColor = Color.Blue;
+            blueToolStripMenuItem.ForeColor = Color.White;
+            blueToolStripMenuItem.Name = "blueToolStripMenuItem";
+            resources.ApplyResources(blueToolStripMenuItem, "blueToolStripMenuItem");
+            blueToolStripMenuItem.Click += MDFileListHighlight;
             // 
             // magentaToolStripMenuItem
             // 
-            this.magentaToolStripMenuItem.BackColor = System.Drawing.Color.Magenta;
-            this.magentaToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.magentaToolStripMenuItem.Name = "magentaToolStripMenuItem";
-            resources.ApplyResources(this.magentaToolStripMenuItem, "magentaToolStripMenuItem");
-            this.magentaToolStripMenuItem.Click += new System.EventHandler(this.MDFileListHighlight);
+            magentaToolStripMenuItem.BackColor = Color.Magenta;
+            magentaToolStripMenuItem.ForeColor = Color.White;
+            magentaToolStripMenuItem.Name = "magentaToolStripMenuItem";
+            resources.ApplyResources(magentaToolStripMenuItem, "magentaToolStripMenuItem");
+            magentaToolStripMenuItem.Click += MDFileListHighlight;
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.optionsToolStripMenuItem,
-            this.automationToolStripMenuItem});
-            resources.ApplyResources(this.menuStrip1, "menuStrip1");
-            this.menuStrip1.Name = "menuStrip1";
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, optionsToolStripMenuItem, automationToolStripMenuItem });
+            resources.ApplyResources(menuStrip1, "menuStrip1");
+            menuStrip1.Name = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            resources.ApplyResources(fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
             // optionsToolStripMenuItem
             // 
-            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.optionsToolStripMenuItem1});
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            resources.ApplyResources(this.optionsToolStripMenuItem, "optionsToolStripMenuItem");
+            optionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { optionsToolStripMenuItem1 });
+            optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            resources.ApplyResources(optionsToolStripMenuItem, "optionsToolStripMenuItem");
             // 
             // optionsToolStripMenuItem1
             // 
-            this.optionsToolStripMenuItem1.Name = "optionsToolStripMenuItem1";
-            resources.ApplyResources(this.optionsToolStripMenuItem1, "optionsToolStripMenuItem1");
+            optionsToolStripMenuItem1.Name = "optionsToolStripMenuItem1";
+            resources.ApplyResources(optionsToolStripMenuItem1, "optionsToolStripMenuItem1");
+            optionsToolStripMenuItem1.Click += optionsToolStripMenuItem1_Click;
             // 
             // automationToolStripMenuItem
             // 
-            this.automationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aISortToolStripMenuItem,
-            this.aIScoreToolStripMenuItem,
-            this.staticSortToolStripMenuItem,
-            this.staticScoreToolStripMenuItem});
-            this.automationToolStripMenuItem.Name = "automationToolStripMenuItem";
-            resources.ApplyResources(this.automationToolStripMenuItem, "automationToolStripMenuItem");
+            automationToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aISortToolStripMenuItem, aIScoreToolStripMenuItem, staticSortToolStripMenuItem, staticScoreToolStripMenuItem });
+            automationToolStripMenuItem.Name = "automationToolStripMenuItem";
+            resources.ApplyResources(automationToolStripMenuItem, "automationToolStripMenuItem");
             // 
             // aISortToolStripMenuItem
             // 
-            this.aISortToolStripMenuItem.Name = "aISortToolStripMenuItem";
-            resources.ApplyResources(this.aISortToolStripMenuItem, "aISortToolStripMenuItem");
+            aISortToolStripMenuItem.Name = "aISortToolStripMenuItem";
+            resources.ApplyResources(aISortToolStripMenuItem, "aISortToolStripMenuItem");
             // 
             // aIScoreToolStripMenuItem
             // 
-            this.aIScoreToolStripMenuItem.Name = "aIScoreToolStripMenuItem";
-            resources.ApplyResources(this.aIScoreToolStripMenuItem, "aIScoreToolStripMenuItem");
+            aIScoreToolStripMenuItem.Name = "aIScoreToolStripMenuItem";
+            resources.ApplyResources(aIScoreToolStripMenuItem, "aIScoreToolStripMenuItem");
             // 
             // staticSortToolStripMenuItem
             // 
-            this.staticSortToolStripMenuItem.Name = "staticSortToolStripMenuItem";
-            resources.ApplyResources(this.staticSortToolStripMenuItem, "staticSortToolStripMenuItem");
+            staticSortToolStripMenuItem.Name = "staticSortToolStripMenuItem";
+            resources.ApplyResources(staticSortToolStripMenuItem, "staticSortToolStripMenuItem");
             // 
             // staticScoreToolStripMenuItem
             // 
-            this.staticScoreToolStripMenuItem.Name = "staticScoreToolStripMenuItem";
-            resources.ApplyResources(this.staticScoreToolStripMenuItem, "staticScoreToolStripMenuItem");
+            staticScoreToolStripMenuItem.Name = "staticScoreToolStripMenuItem";
+            resources.ApplyResources(staticScoreToolStripMenuItem, "staticScoreToolStripMenuItem");
             // 
             // splitContainer1
             // 
-            resources.ApplyResources(this.splitContainer1, "splitContainer1");
-            this.splitContainer1.Name = "splitContainer1";
+            resources.ApplyResources(splitContainer1, "splitContainer1");
+            splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            this.splitContainer1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MDFileList_MouseDown);
+            splitContainer1.Panel1.Controls.Add(splitContainer2);
+            splitContainer1.MouseDown += MDFileList_MouseDown;
             // 
             // splitContainer2
             // 
-            resources.ApplyResources(this.splitContainer2, "splitContainer2");
-            this.splitContainer2.Name = "splitContainer2";
+            resources.ApplyResources(splitContainer2, "splitContainer2");
+            splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.MDFileList);
+            splitContainer2.Panel1.Controls.Add(MDFileList);
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.MDFileViewTabs);
-            this.splitContainer2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MDFileList_MouseDown);
+            splitContainer2.Panel2.Controls.Add(MDFileViewTabs);
+            splitContainer2.MouseDown += MDFileList_MouseDown;
             // 
             // MDFileList
             // 
-            this.MDFileList.ContextMenuStrip = this.MDFileListContext;
-            resources.ApplyResources(this.MDFileList, "MDFileList");
-            this.MDFileList.Name = "MDFileList";
-            this.MDFileList.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.MDFileList_ViewElement);
-            this.MDFileList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MDFileList_MouseDown);
+            MDFileList.ContextMenuStrip = MDFileListContext;
+            resources.ApplyResources(MDFileList, "MDFileList");
+            MDFileList.Name = "MDFileList";
+            MDFileList.NodeMouseDoubleClick += MDFileList_ViewElement;
+            MDFileList.MouseDown += MDFileList_MouseDown;
             // 
             // MDFileViewTabs
             // 
-            resources.ApplyResources(this.MDFileViewTabs, "MDFileViewTabs");
-            this.MDFileViewTabs.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.MDFileViewTabs.Name = "MDFileViewTabs";
-            this.MDFileViewTabs.SelectedIndex = 0;
-            this.MDFileViewTabs.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.MDFileViewTabs_DrawItem);
-            this.MDFileViewTabs.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MDFileViewTabs_MouseClick);
+            resources.ApplyResources(MDFileViewTabs, "MDFileViewTabs");
+            MDFileViewTabs.DrawMode = TabDrawMode.OwnerDrawFixed;
+            MDFileViewTabs.Name = "MDFileViewTabs";
+            MDFileViewTabs.SelectedIndex = 0;
+            MDFileViewTabs.DrawItem += MDFileViewTabs_DrawItem;
+            MDFileViewTabs.MouseClick += MDFileViewTabs_MouseClick;
             // 
             // MainView
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.menuStrip1);
-            this.DoubleBuffered = true;
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "MainView";
-            this.Load += new System.EventHandler(this.MainView_Load);
-            this.MDFileListContext.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(splitContainer1);
+            Controls.Add(menuStrip1);
+            DoubleBuffered = true;
+            MainMenuStrip = menuStrip1;
+            Name = "MainView";
+            Load += MainView_Load;
+            MDFileListContext.ResumeLayout(false);
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            splitContainer1.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
+            splitContainer2.Panel1.ResumeLayout(false);
+            splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
+            splitContainer2.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

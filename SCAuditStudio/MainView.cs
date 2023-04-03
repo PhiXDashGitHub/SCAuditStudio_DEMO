@@ -5,7 +5,7 @@ namespace SCAuditStudio
 {
     public partial class MainView : Form
     {
-        public string ProjectDirectory = @"C:\Users\Phillip\Downloads\2023-02-gmx-judging-Oot2k\2023-02-gmx-judging-Oot2k\";
+        public string ProjectDirectory = @"C:\Users\LinenBox\Documents\GitHub\2023-03-Gitcoin-judging-Oot2k";
         public MDManager mdManager;
 
         public MainView()
@@ -210,6 +210,12 @@ namespace SCAuditStudio
             MDFileViewTabs.TabPages.Add(page);
 
             MDFileViewTabs.SelectedTab = page;
+        }
+
+        private void optionsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SettingsMenu s = new SettingsMenu();
+            s.Show();
         }
     }
 }
