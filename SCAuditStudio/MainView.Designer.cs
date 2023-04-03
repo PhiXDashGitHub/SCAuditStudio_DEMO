@@ -301,6 +301,7 @@
             this.MDFileList.ContextMenuStrip = this.MDFileListContext;
             resources.ApplyResources(this.MDFileList, "MDFileList");
             this.MDFileList.Name = "MDFileList";
+            this.MDFileList.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.MDFileList_ViewElement);
             this.MDFileList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MDFileList_MouseDown);
             // 
             // MDFileViewTabs
@@ -309,7 +310,8 @@
             this.MDFileViewTabs.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.MDFileViewTabs.Name = "MDFileViewTabs";
             this.MDFileViewTabs.SelectedIndex = 0;
-            this.MDFileViewTabs.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MDFileList_MouseDown);
+            this.MDFileViewTabs.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.MDFileViewTabs_DrawItem);
+            this.MDFileViewTabs.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MDFileViewTabs_MouseClick);
             // 
             // MainView
             // 
