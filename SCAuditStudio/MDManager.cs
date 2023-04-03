@@ -105,16 +105,25 @@ namespace SCAuditStudio
                 string subName = Path.GetFileName(subDir);
                 MDTreeNode subNode = new(subName, "untitled", 0);
 
+                string previewTitle = "untitled";
+
                 foreach (string file in subFiles)
                 {
                     string fileName = Path.GetFileName(file);
                     MDTreeNode fileNode = new(fileName, "untitled", 0);
                     fileNode.Text = $"{fileNode.name}";
-                    if (file.EndsWith(".md")) fileNode.Text += $" - {fileNode.title} - {fileNode.score}";
+
+                    if (file.EndsWith(".md"))
+                    {
+                        fileNode.title = GetFile(fileName)?.title ?? "untitled";
+                        previewTitle = fileNode.title;
+                        fileNode.Text += $" - {fileNode.title} - {fileNode.score}";
+                    }
 
                     subNode.Nodes.Add(fileNode);
                 }
 
+                subNode.title = previewTitle;
                 subNode.Text = $"{subNode.name}";
                 if (IsIssue(subNode.name)) subNode.Text += $" - {subNode.title}";
 
@@ -128,7 +137,12 @@ namespace SCAuditStudio
                 string fileName = Path.GetFileName(file);
                 MDTreeNode fileNode = new(fileName, "untitled", 0);
                 fileNode.Text = $"{fileNode.name}";
-                if (file.EndsWith(".md")) fileNode.Text += $" - {fileNode.title} - {fileNode.score}";
+
+                if (file.EndsWith(".md"))
+                {
+                    fileNode.title = GetFile(fileName)?.title ?? "untitled";
+                    fileNode.Text += $" - {fileNode.title} - {fileNode.score}";
+                }
 
                 nodes.Add(fileNode);
             }
@@ -151,12 +165,6 @@ namespace SCAuditStudio
                     nodes[0].TreeView.SelectedNode = nodes[n];
                 }
             }
-        }
-        public void UpdateFileTreeNode(MDTreeNode node)
-        {
-            node.Text = $"{node.name}";
-            if (node.name.EndsWith(".md")) node.Text += $" - {node.title} - {node.score}";
-            else node.Text += $" - {node.title}";
         }
         public string[] GetIssues(MDFileIssue severity)
         {
@@ -235,6 +243,12 @@ namespace SCAuditStudio
         public static bool IsIssue(string name)
         {
             return (name.EndsWith("-M") || name.EndsWith("-H")) && char.IsDigit(name[0]) && char.IsDigit(name[1]) && char.IsDigit(name[2]);
+        }
+        public static void UpdateFileTreeNode(MDTreeNode node)
+        {
+            node.Text = $"{node.name}";
+            if (node.name.EndsWith(".md")) node.Text += $" - {node.title} - {node.score}";
+            else node.Text += $" - {node.title}";
         }
 
         public async Task LoadFilesAsync()

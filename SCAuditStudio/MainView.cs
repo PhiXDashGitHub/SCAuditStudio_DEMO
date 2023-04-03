@@ -170,7 +170,7 @@ namespace SCAuditStudio
             string newName = mdManager.UnmarkFile(node.name);
 
             node.name = newName;
-            mdManager.UpdateFileTreeNode(node);
+            MDManager.UpdateFileTreeNode(node);
         }
         void MDFileListMarkAsBest(object sender, EventArgs e)
         {
