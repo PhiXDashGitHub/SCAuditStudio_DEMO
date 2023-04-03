@@ -8,14 +8,12 @@ namespace SCAuditStudio
 {
     public partial class MDTreeNode : TreeNode
     {
-        public string path;
         public string name;
         public string title;
         public int score;
 
-        public MDTreeNode(string path, string name, string title, int score)
+        public MDTreeNode(string name, string title, int score)
         {
-            this.path = path;
             this.name = name;
             this.title = title;
             this.score = score;

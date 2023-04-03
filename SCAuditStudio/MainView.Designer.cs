@@ -44,6 +44,14 @@
             this.markIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unmarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asBestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.highlightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.redToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.orangeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.yellowToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.greenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.blueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.magentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MDFileViewTabs = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -82,14 +90,14 @@
             this.MDFileList.ContextMenuStrip = this.MDFileListContext;
             resources.ApplyResources(this.MDFileList, "MDFileList");
             this.MDFileList.Name = "MDFileList";
-            this.MDFileList.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.MDFileList_ViewElement);
             // 
             // MDFileListContext
             // 
             this.MDFileListContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.moveToToolStripMenuItem,
             this.generateIssueToolStripMenuItem,
-            this.markIssueToolStripMenuItem});
+            this.markIssueToolStripMenuItem,
+            this.highlightToolStripMenuItem});
             this.MDFileListContext.Name = "contextMenuStrip1";
             resources.ApplyResources(this.MDFileListContext, "MDFileListContext");
             // 
@@ -159,6 +167,73 @@
             resources.ApplyResources(this.asBestToolStripMenuItem, "asBestToolStripMenuItem");
             this.asBestToolStripMenuItem.Click += new System.EventHandler(this.MDFileListMarkAsBest);
             // 
+            // highlightToolStripMenuItem
+            // 
+            this.highlightToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearToolStripMenuItem,
+            this.redToolStripMenuItem,
+            this.orangeToolStripMenuItem,
+            this.yellowToolStripMenuItem1,
+            this.greenToolStripMenuItem,
+            this.blueToolStripMenuItem,
+            this.magentaToolStripMenuItem});
+            this.highlightToolStripMenuItem.Name = "highlightToolStripMenuItem";
+            resources.ApplyResources(this.highlightToolStripMenuItem, "highlightToolStripMenuItem");
+            this.highlightToolStripMenuItem.Click += new System.EventHandler(this.MDFileListHighlight);
+            // 
+            // clearToolStripMenuItem
+            // 
+            this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
+            resources.ApplyResources(this.clearToolStripMenuItem, "clearToolStripMenuItem");
+            this.clearToolStripMenuItem.Click += new System.EventHandler(this.MDFileListHighlight);
+            // 
+            // redToolStripMenuItem
+            // 
+            this.redToolStripMenuItem.BackColor = System.Drawing.Color.Red;
+            this.redToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.redToolStripMenuItem.Name = "redToolStripMenuItem";
+            resources.ApplyResources(this.redToolStripMenuItem, "redToolStripMenuItem");
+            this.redToolStripMenuItem.Click += new System.EventHandler(this.MDFileListHighlight);
+            // 
+            // orangeToolStripMenuItem
+            // 
+            this.orangeToolStripMenuItem.BackColor = System.Drawing.Color.Orange;
+            this.orangeToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.orangeToolStripMenuItem.Name = "orangeToolStripMenuItem";
+            resources.ApplyResources(this.orangeToolStripMenuItem, "orangeToolStripMenuItem");
+            this.orangeToolStripMenuItem.Click += new System.EventHandler(this.MDFileListHighlight);
+            // 
+            // yellowToolStripMenuItem1
+            // 
+            this.yellowToolStripMenuItem1.BackColor = System.Drawing.Color.Yellow;
+            this.yellowToolStripMenuItem1.ForeColor = System.Drawing.Color.Black;
+            this.yellowToolStripMenuItem1.Name = "yellowToolStripMenuItem1";
+            resources.ApplyResources(this.yellowToolStripMenuItem1, "yellowToolStripMenuItem1");
+            this.yellowToolStripMenuItem1.Click += new System.EventHandler(this.MDFileListHighlight);
+            // 
+            // greenToolStripMenuItem
+            // 
+            this.greenToolStripMenuItem.BackColor = System.Drawing.Color.Lime;
+            this.greenToolStripMenuItem.Name = "greenToolStripMenuItem";
+            resources.ApplyResources(this.greenToolStripMenuItem, "greenToolStripMenuItem");
+            this.greenToolStripMenuItem.Click += new System.EventHandler(this.MDFileListHighlight);
+            // 
+            // blueToolStripMenuItem
+            // 
+            this.blueToolStripMenuItem.BackColor = System.Drawing.Color.Blue;
+            this.blueToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.blueToolStripMenuItem.Name = "blueToolStripMenuItem";
+            resources.ApplyResources(this.blueToolStripMenuItem, "blueToolStripMenuItem");
+            this.blueToolStripMenuItem.Click += new System.EventHandler(this.MDFileListHighlight);
+            // 
+            // magentaToolStripMenuItem
+            // 
+            this.magentaToolStripMenuItem.BackColor = System.Drawing.Color.Magenta;
+            this.magentaToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.magentaToolStripMenuItem.Name = "magentaToolStripMenuItem";
+            resources.ApplyResources(this.magentaToolStripMenuItem, "magentaToolStripMenuItem");
+            this.magentaToolStripMenuItem.Click += new System.EventHandler(this.MDFileListHighlight);
+            // 
             // MDFileViewTabs
             // 
             resources.ApplyResources(this.MDFileViewTabs, "MDFileViewTabs");
@@ -205,5 +280,13 @@
         private ToolStripMenuItem unmarkToolStripMenuItem;
         private ToolStripMenuItem asBestToolStripMenuItem;
         private ToolStripMenuItem issueToolStripMenuItem;
+        private ToolStripMenuItem highlightToolStripMenuItem;
+        private ToolStripMenuItem clearToolStripMenuItem;
+        private ToolStripMenuItem redToolStripMenuItem;
+        private ToolStripMenuItem orangeToolStripMenuItem;
+        private ToolStripMenuItem yellowToolStripMenuItem1;
+        private ToolStripMenuItem greenToolStripMenuItem;
+        private ToolStripMenuItem blueToolStripMenuItem;
+        private ToolStripMenuItem magentaToolStripMenuItem;
     }
 }

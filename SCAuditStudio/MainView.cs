@@ -5,166 +5,18 @@ namespace SCAuditStudio
 {
     public partial class MainView : Form
     {
-        static string InValidFolder = "invalid";
-        static string ProjectDirectory = @"C:\Users\Phillip\Downloads\2023-02-gmx-judging-Oot2k\2023-02-gmx-judging-Oot2k\";
-        public enum Severity { Medium, High };
+        public string ProjectDirectory = @"C:\Users\Phillip\Downloads\2023-02-gmx-judging-Oot2k\2023-02-gmx-judging-Oot2k\";
+        public MDManager mdManager;
 
         public MainView()
         {
             InitializeComponent();
         }
 
-        public string[] GetMediumIssues()
-        {
-            List<string> issues = new();
-
-            TreeNodeCollection nodes = MDFileList.Nodes;
-            foreach (MDTreeNode node in nodes)
-            {
-                if (node.name.EndsWith("-M"))
-                {
-                    issues.Add(node.name);
-                }
-            }
-
-            return issues.ToArray();
-        }
-        public string[] GetHighIssues()
-        {
-            List<string> issues = new();
-
-            TreeNodeCollection nodes = MDFileList.Nodes;
-            foreach (MDTreeNode node in nodes)
-            {
-                if (node.name.EndsWith("-H"))
-                {
-                    issues.Add(node.name);
-                }
-            }
-
-            return issues.ToArray();
-        }
-        public void TryRemoveParentNode(MDTreeNode? parentNode)
-        {
-            if (parentNode != null)
-            {
-                if (parentNode.Nodes.Count <= 1)
-                {
-                    RemoveSubFolder(parentNode.name);
-                }
-            }
-        }
-        public void MoveToSubFolder(string fileName, string folderName)
-        {
-            string? filePath = MDReader.SearchFile(ProjectDirectory, fileName);
-            string subPath = Path.Combine(ProjectDirectory, folderName);
-            string destFile = Path.Combine(subPath, fileName);
-            if (string.IsNullOrEmpty(filePath)) return;
-            if (!Directory.Exists(subPath)) Directory.CreateDirectory(subPath);
-            if (Directory.Exists(subPath)) File.Move(filePath, destFile);
-        }
-        public void RemoveSubFolder(string folderName)
-        {
-            string subPath = Path.Combine(ProjectDirectory, folderName);
-            if (Directory.Exists(subPath)) Directory.Delete(subPath, true);
-        }
-        public void MoveToRoot(string fileName)
-        {
-            MoveToSubFolder(fileName, "");
-        }
-        public void MoveToInvalid(string fileName)
-        {
-            MoveToSubFolder(fileName, InValidFolder);
-        }
-        public void MoveToNewIssue(string currentIssue, Severity severity)
-        {
-            //Find last issue in list
-            string[] issues = severity == Severity.High ? GetHighIssues() : GetMediumIssues();
-            string issueName = (issues.Length + 1).ToString("000");
-            string folderName = $"{issueName}-{(severity == Severity.High ? 'H' : 'M')}";
-
-            MoveToSubFolder(currentIssue, folderName);
-        }
-        public void MoveToIssue(string fileName, string issue)
-        {
-            MoveToSubFolder(fileName, issue);
-        }
-        public void UnmarkFile(string file)
-        {
-            string? path = Path.GetDirectoryName(file);
-            string? fileName = Path.GetFileName(file);
-            if (path == null || fileName == null) return;
-
-            string newFile = Path.Combine(path, fileName.Replace("-best", ""));
-            File.Move(file, newFile);
-        }
-        public void MarkFile(string file)
-        {
-            string? path = Path.GetDirectoryName(file);
-            string? fileName = Path.GetFileName(file);
-            if (path == null || fileName == null) return;
-
-            string newFile = Path.Combine(path, fileName.Replace(".md", "-best.md"));
-            File.Move(file, newFile);
-        }
-
         /* PUBLIC FUNCTIONS */
-        public async void PopulateMDFileView(string directory)
+        public void UpdateFileTree()
         {
-            //Check if directory exists, if not - return
-            if (!Directory.Exists(directory))
-            {
-                return;
-            }
-
-            //Clear Existing Nodes
-            MDFileList.Nodes.Clear();
-
-            //Load all folders and add them plus their subfiles into treeview
-            string[] folders = Directory.GetDirectories(directory);
-            foreach (string folder in folders)
-            {
-                string? folderName = Path.GetFileName(folder);
-                if (folderName == null) continue;
-                if (folderName == ".data") continue;
-
-                MDTreeNode folderNode = new(folder, folderName, "", 0);
-
-                string[] subFiles = Directory.GetFiles(folder);
-                string firstTitle = "";
-                foreach (string subFile in subFiles)
-                {
-                    string? fileName = Path.GetFileName(subFile);
-                    MDReader mdReader = new(ProjectDirectory);
-                    string title = await mdReader.ReadTitleAsync(fileName);
-                    MDTreeNode fileNode = new(subFile, fileName, title, 0);
-                    fileNode.Text = $"{fileName} - {title[..Math.Min(title.Length, 20)]} - {fileNode.score}";
-                    firstTitle = title[..Math.Min(title.Length, 20)];
-
-                    folderNode.Nodes.Add(fileNode);
-                }
-
-                folderNode.title = firstTitle;
-                folderNode.Text = $"{folderName} - {firstTitle}";
-
-                MDFileList.Nodes.Add(folderNode);
-            }
-
-            //Load all files and add into treeview
-            string[] files = Directory.GetFiles(directory);
-            foreach (string file in files)
-            {
-                string? fileName = Path.GetFileName(file);
-                MDReader mdReader = new(ProjectDirectory);
-                string title = await mdReader.ReadTitleAsync(fileName);
-                MDTreeNode fileNode = new(file, fileName, title, 0);
-                fileNode.Text = $"{fileName} - {title[..Math.Min(title.Length, 20)]} - {fileNode.score}";
-
-                MDFileList.Nodes.Add(fileNode);
-            }
-
-            //Reload Issue Context List
-            LoadContextIssues();
+            mdManager.SetFileTree(MDFileList.Nodes);
         }
         public void LoadContextIssues()
         {
@@ -173,7 +25,9 @@ namespace SCAuditStudio
             ToolStripMenuItem moveToIssueItem = (ToolStripMenuItem)moveItem.DropDownItems[2];
             moveToIssueItem.DropDownItems.Clear();
 
-            string[] issues = GetHighIssues().Concat(GetMediumIssues()).ToArray();
+            string[] mediumIssues = mdManager.GetIssues(MDManager.MDFileIssue.Medium);
+            string[] highIssues = mdManager.GetIssues(MDManager.MDFileIssue.High);
+            string[] issues = highIssues.Concat(mediumIssues).ToArray();
             foreach (string currentIssue in issues)
             {
                 ToolStripItem issueItem = moveToIssueItem.DropDownItems.Add(currentIssue);
@@ -186,8 +40,7 @@ namespace SCAuditStudio
             if (!fileName.EndsWith(".md")) { return; }
 
             //Read MD file raw
-            MDReader mdReader = new(ProjectDirectory);
-            string md = await mdReader.ReadFileContentAsync(fileName);
+            string md = "PLEASE REPLACE ME";
             md = md.Split("\n").Skip(4).ToArray().ToSingle();
 
             //Convert to html and add some formatting
@@ -220,10 +73,15 @@ namespace SCAuditStudio
         }
 
         /* EVENTS */
-        void MainView_Load(object sender, EventArgs e)
+        async void MainView_Load(object sender, EventArgs e)
         {
-            PopulateMDFileView(ProjectDirectory);
+            mdManager = new(ProjectDirectory);
+            await mdManager.LoadFilesAsync();
+
+            UpdateFileTree();
+            LoadContextIssues();
         }
+
         void MDFileViewTabs_DrawItem(object sender, DrawItemEventArgs e)
         {
             Image img = new Bitmap(Properties.Resources.CloseTabButton);
@@ -252,104 +110,86 @@ namespace SCAuditStudio
         }
         void MDFileListMoveToInvalid(object sender, EventArgs e)
         {
-            string file = MDFileList.SelectedNode.Text;
-            if (!file.EndsWith(".md")) return;
-
-            MDTreeNode? parentNode = (MDTreeNode)MDFileList.SelectedNode.Parent;
-            if (parentNode != null) if (parentNode.name == InValidFolder) return;
-
-            MoveToInvalid(file);
-            TryRemoveParentNode(parentNode);
-            PopulateMDFileView(ProjectDirectory);
-        }
-        void MDFileListMoveToRoot(object sender, EventArgs e)
-        {
             string file = ((MDTreeNode)MDFileList.SelectedNode).name;
             if (!file.EndsWith(".md")) return;
 
-            MDTreeNode? parentNode = (MDTreeNode)MDFileList.SelectedNode.Parent;
-            MoveToRoot(file);
-            TryRemoveParentNode(parentNode);
-            PopulateMDFileView(ProjectDirectory);
+            mdManager.MoveFileToInvalid(file);
+            UpdateFileTree();
+        }
+        void MDFileListMoveToRoot(object sender, EventArgs e)
+        {
+            Console.WriteLine("Move file to root");
+
+            string file = ((MDTreeNode)MDFileList.SelectedNode).name;
+            if (!file.EndsWith(".md")) return;
+
+            mdManager.MoveFileToRoot(file);
+            UpdateFileTree();
         }
         void MDFileListMoveToIssue(object? sender, EventArgs e, string currentIssue)
         {
             string file = ((MDTreeNode)MDFileList.SelectedNode).name;
             if (!file.EndsWith(".md")) return;
 
-            MDTreeNode? parentNode = (MDTreeNode)MDFileList.SelectedNode.Parent;
-            if (parentNode != null) if (parentNode.name == currentIssue) return;
+            mdManager.MoveFileToIssue(file, currentIssue, false);
 
-            MoveToIssue(file, currentIssue);
-            TryRemoveParentNode(parentNode);
-            PopulateMDFileView(ProjectDirectory);
+            UpdateFileTree();
+            LoadContextIssues();
         }
         void MDFileListGenerateHighIssue(object sender, EventArgs e)
         {
-            MDTreeNode? parentNode = (MDTreeNode)MDFileList.SelectedNode.Parent;
             string file = ((MDTreeNode)MDFileList.SelectedNode).name;
             if (!file.EndsWith(".md")) return;
 
-            MoveToRoot(file);
-            TryRemoveParentNode(parentNode);
-            PopulateMDFileView(ProjectDirectory);
-            MoveToNewIssue(file, Severity.High);
-            PopulateMDFileView(ProjectDirectory);
+            mdManager.MoveFileToIssue(file, MDManager.MDFileIssue.High, mdManager.GetIssueIndex(MDManager.MDFileIssue.High), true);
+
+            UpdateFileTree();
+            LoadContextIssues();
         }
         void MDFileListGenerateMediumIssue(object sender, EventArgs e)
         {
-            MDTreeNode? parentNode = (MDTreeNode)MDFileList.SelectedNode.Parent;
             string file = ((MDTreeNode)MDFileList.SelectedNode).name;
             if (!file.EndsWith(".md")) return;
 
-            MoveToRoot(file);
-            TryRemoveParentNode(parentNode);
-            PopulateMDFileView(ProjectDirectory);
-            MoveToNewIssue(file, Severity.Medium);
-            PopulateMDFileView(ProjectDirectory);
+            mdManager.MoveFileToIssue(file, MDManager.MDFileIssue.Medium, mdManager.GetIssueIndex(MDManager.MDFileIssue.Medium), true);
+
+            UpdateFileTree();
+            LoadContextIssues();
+        }
+        void MDFileListHighlight(object sender, EventArgs e)
+        {
+            string? colorString = sender.ToString();
+            if (colorString == null) return;
+
+            Color color = colorString == "Clear" ? Color.FromKnownColor(KnownColor.Window) : Color.FromName(colorString);
+            MDFileList.SelectedNode.BackColor = color;
         }
         void MDFileListUnmark(object sender, EventArgs e)
         {
-            MDTreeNode? parentNode = (MDTreeNode)MDFileList.SelectedNode.Parent;
-            if (parentNode == null) return;
-            if (!parentNode.name.EndsWith("-H") && !parentNode.name.EndsWith("-M")) return;
+            MDTreeNode node = (MDTreeNode)MDFileList.SelectedNode;
+            string newName = mdManager.UnmarkFile(node.name);
 
-            string fileName = ((MDTreeNode)MDFileList.SelectedNode).name;
-            if (!fileName.EndsWith(".md")) return;
-
-            string? file = MDReader.SearchFile(ProjectDirectory, fileName);
-            if (file == null) return;
-
-            UnmarkFile(file);
-
-            PopulateMDFileView(ProjectDirectory);
+            node.name = newName;
+            mdManager.UpdateFileTreeNode(node);
         }
         void MDFileListMarkAsBest(object sender, EventArgs e)
         {
-            MDTreeNode? parentNode = (MDTreeNode)MDFileList.SelectedNode.Parent;
-            if (parentNode == null) return;
-            if (parentNode.Nodes.Count < 2) return;
-            if (!parentNode.name.EndsWith("-H") && !parentNode.name.EndsWith("-M")) return;
+            //Check if in Issue Folder
+            MDTreeNode node = (MDTreeNode)MDFileList.SelectedNode;
+            MDFile? mdFile = mdManager.GetFile(node.name);
+            if (mdFile == null) return;
+            if (!mdManager.IssueExists(mdFile.subPath)) return;
+            if (mdManager.GetMDFileCountInSubPath(mdFile.subPath) < 2) return;
 
-            string fileName = ((MDTreeNode)MDFileList.SelectedNode).name;
-            if (!fileName.EndsWith(".md")) return;
-
-            string? file = MDReader.SearchFile(ProjectDirectory, fileName);
-            if (file == null) return;
-
-            //Unmark all files in parent directory
-            foreach (MDTreeNode node in parentNode.Nodes)
+            MDFile[] mdFilesInSubPath = mdManager.mdFiles.Where(f => f.subPath == mdFile.subPath && f != mdFile).ToArray();
+            for (int i = 0; i < mdFilesInSubPath.Length; i++)
             {
-                string? subFile = MDReader.SearchFile(ProjectDirectory, node.name);
-                if (subFile == null) continue;
-
-                UnmarkFile(subFile);
+                mdManager.UnmarkFile(mdFilesInSubPath[i].fileName);
             }
 
-            //Mark Selected File as best
-            MarkFile(file);
+            mdManager.MarkFileAsBest(node.name);
 
-            PopulateMDFileView(ProjectDirectory);
+            UpdateFileTree();
         }
         public async void MDFileList_ViewElement(object sender, TreeNodeMouseClickEventArgs e)
         {

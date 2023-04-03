@@ -31,16 +31,6 @@ namespace SCAuditStudio
             TaskDialog.ShowDialog(page);
         }
 
-        public static string[] Between(this string[] array, string a, string b)
-        {
-            return array.SkipWhile(l => !l.StartsWith(a)).Skip(1).TakeWhile(l => !l.StartsWith(b)).ToArray();
-        }
-
-        public static string[] After(this string[] array, string a)
-        {
-            return array.SkipWhile(l => !l.StartsWith(a)).Skip(1).ToArray();
-        }
-
         public static string ToSingle(this string[] array)
         {
             string result = array[0];

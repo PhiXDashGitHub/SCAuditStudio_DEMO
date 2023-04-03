@@ -1,113 +1,130 @@
-﻿namespace SCAuditStudio
+﻿using System.Text.RegularExpressions;
+
+namespace SCAuditStudio
 {
-    internal class MDReader
+    public static class MDReader
     {
-        readonly string workDir = @"C:\";
-
-        public MDReader(string directory)
+        static readonly int authorLine   = 0;
+        static readonly int severityLine = 2;
+        static readonly int titleLine    = 4;
+        static readonly string summaryHeader        = "## Summary";
+        static readonly string detailHeader         = "## Vulnerability Detail";
+        static readonly string impactHeader         = "## Impact";
+        static readonly string codeHeader           = "## Code Snippet";
+        static readonly string toolHeader           = "## Tool used";
+        static readonly string recommendationHeader = "## Recommendation";
+        
+        /* INTERNAL FILE ANALYSIS */
+        static string[] ParseWebLinks(string text)
         {
-            workDir = directory;
-        }
-
-        public static string? SearchFile(string directory, string fileName)
-        {
-            string[] files = Directory.GetFiles(directory, fileName, SearchOption.AllDirectories);
-
-            if (files.Length == 0)
+            Regex linkParser = new(@"\b(?:https?://|www\.)\S+\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            MatchCollection matches = linkParser.Matches(text);
+            string[] links = new string[matches.Count];
+            for (int l = 0; l < links.Length; l++)
             {
-                //throw error, no file found
-                return null;
+                Match match = matches[l];
+                links[l] = match.Value;
             }
 
-            if (files.Length > 1)
-            {
-                //throw error, multiple files found
-                return null;
-            }
-
-            return files[0];
+            return links;
         }
-
-        public async Task<string> ReadFileContentAsync(string fileName)
+        static CodeSnippet[] ParseCodeSnippets(MDFile file)
         {
-            //search file, return if not found
-            string? path = SearchFile(workDir, fileName);
-            if (path == null) { return "invalid"; }
-
-            return await File.ReadAllTextAsync(path);
-        }
-
-        public async Task<string> ReadTitleAsync(string fileName)
-        {
-            //search file, return invalid if not found
-            string? path = SearchFile(workDir, fileName);
-            if (path == null) { return "untitled"; }
-
-            string content = await File.ReadAllTextAsync(path);
-            string[] lines = content.Split("\n");
-
-            return lines.Where(l => l.StartsWith("# ")).First().Replace("# ", "");
-        }
-
-        public async Task<MDFile> ReadFileAsync(string fileName)
-        {
-            MDFile file = new();
-
-            //search file, return invalid if not found
-            string? path = SearchFile(workDir, fileName);
-            if (path == null) { return MDFile.Invalid; }
-
-            file.path = path;
-            file.rawContent = await File.ReadAllTextAsync(path);
-
-            //check for minimum length
-            if (file.rawContent.Length < 10) { return MDFile.Invalid; }
-            if (!file.rawContent.Contains("## Summary") ||
-                !file.rawContent.Contains("## Vulnerability Detail") ||
-                !file.rawContent.Contains("## Impact") ||
-                !file.rawContent.Contains("## Code Snippet") ||
-                !file.rawContent.Contains("## Tool used") ||
-                !file.rawContent.Contains("## Recommendation"))
-            {
-                return MDFile.Invalid;
-            }
-
-            string[] content = file.rawContent.Split("\n");
-            file.author = content[0].Replace("\r", "");
-            file.severity = content[2].Replace("\r", "");
-            file.title = content[4].Split("# ")[^1].Replace("\r", "");
-            file.summary = content.Between("## Summary", "## Vulnerability Detail").ToSingle();
-            file.detail = content.Between("## Vulnerability Detail", "## Impact").ToSingle();
-            file.impact = content.Between("## Impact", "## Code Snippet").ToSingle();
-
             List<CodeSnippet> snippets = new();
-            string[] codeLinks = content.Where(l => l.Contains("https://github.com/")).ToArray();
-            for (int l = 0; l < codeLinks.Length; l++)
+
+            string[] rawSnippets = file.rawContent.Split("```").GetOddIndexedElements();
+            foreach (string rawSnippet in rawSnippets)
             {
-                if (codeLinks[l].Contains('(') && codeLinks[l].Contains(')'))
+                string language = rawSnippet.Split('\r')[0];
+                int startIndex = $"{language}\r".Length;
+                if (startIndex >= rawSnippet.Length) continue;
+                string snippet = rawSnippet[startIndex..].Trim();
+                snippets.Add(new CodeSnippet(snippet, language));
+            }
+
+            return snippets.ToArray();
+        }
+        static async Task<CodeSnippet[]> ParseCodeLinks(MDFile file)
+        {
+            List<CodeSnippet> snippets = new();
+
+            string[] links = ParseWebLinks(file.rawContent);
+            foreach (string link in links)
+            {
+                if (link.Contains("github.com"))
                 {
-                    codeLinks[l] = codeLinks[l].Split('(', ')')[1];
+                    snippets.Add(await ParseGithubCodeAsync(link));
                 }
-
-                CodeSnippet parsedLink = await CodeSnippet.ParseAsync(codeLinks[l]);
-                if (parsedLink == CodeSnippet.Empty) continue;
-
-                snippets.Add(parsedLink);
             }
-            string[] codeSnippets = file.rawContent.Split("```").GetOddIndexedElements();
-            for (int s = 0; s < codeSnippets.Length; s++)
+
+            return snippets.ToArray();
+        }
+        static async Task<CodeSnippet> ParseGithubCodeAsync(string githubLink)
+        {
+            string[] rawLink = githubLink.Replace("github.com", "raw.githubusercontent.com").Replace("blob/", "").Split("#");
+            string link = rawLink[0];
+            string[] lineInfo = rawLink[^1].Split("-");
+
+            HttpClient client = new();
+            string language = "undefined";
+            string code = "";
+
+            try
             {
-                string language = codeSnippets[s].Split("\n")[0].Replace("\r", "");
-                codeSnippets[s] = codeSnippets[s].Split(language)[^1];
+                string response = await client.GetStringAsync(link);
+                string[] page = response.Split("\n");
 
-                snippets.Add(new(codeSnippets[s], language));
+                int lineStart = rawLink.Length > 1 ? int.Parse(lineInfo[0].Replace("L", "")) - 1 : 0;
+                int lineEnd = lineInfo.Length > 1 ? int.Parse(lineInfo[^1].Replace("L", "")) : page.Length;
+
+                language = page.Where(l => l.StartsWith("pragma"))?.First().Split(" ")[1] ?? "undefined";
+                code = "";
+
+                for (int l = lineStart; l < lineEnd; l++)
+                {
+                    code += page[l];
+                }
             }
-            file.code = snippets.ToArray();
+            catch
+            {
+                return CodeSnippet.Empty;
+            }
 
-            file.tools = content.Between("## Tool used", "## Recommendation").ToSingle();
-            file.recommendation = content.After("## Recommendation").ToSingle();
+            return new CodeSnippet(code, language);
+        }
+        public static async Task<MDFile> ReadFileAsync(string file, bool ignoreLinks = false)
+        {
+            MDFile mdFile = new();
 
-            return file;
+            //search file, return invalid if not found
+            if (!File.Exists(file)) { return MDFile.Invalid; }
+
+            mdFile.path = file;
+            mdFile.rawContent = await File.ReadAllTextAsync(file);
+            string[] lines = mdFile.rawContent.Split("\n");
+
+            mdFile.author = lines[authorLine];
+            mdFile.severity = lines[severityLine];
+            mdFile.title = lines[titleLine][2..];
+
+            int summaryIndex = mdFile.rawContent.IndexOf(summaryHeader);
+            int detailIndex = mdFile.rawContent.IndexOf(detailHeader);
+            int impactIndex = mdFile.rawContent.IndexOf(impactHeader);
+            int codeIndex = mdFile.rawContent.IndexOf(codeHeader);
+            int toolIndex = mdFile.rawContent.IndexOf(toolHeader);
+            int recommendationIndex = mdFile.rawContent.IndexOf(recommendationHeader);
+
+            mdFile.summary = mdFile.rawContent[(summaryIndex + summaryHeader.Length)..detailIndex].Trim();
+            mdFile.detail = mdFile.rawContent[(detailIndex + detailHeader.Length)..impactIndex].Trim();
+            mdFile.impact = mdFile.rawContent[(impactIndex + impactHeader.Length)..codeIndex].Trim();
+            mdFile.tools = mdFile.rawContent[(toolIndex + toolHeader.Length)..recommendationIndex].Trim();
+            mdFile.recommendation = mdFile.rawContent[(recommendationIndex + recommendationHeader.Length)..].Trim();
+
+            CodeSnippet[] codeSnippets = ParseCodeSnippets(mdFile);
+            CodeSnippet[] linkSnippets = ignoreLinks ? Array.Empty<CodeSnippet>() : await ParseCodeLinks(mdFile);
+            mdFile.code = codeSnippets.Concat(linkSnippets).ToArray();
+
+            return mdFile;
         }
     }
 }

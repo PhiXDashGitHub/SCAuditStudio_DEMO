@@ -1,8 +1,9 @@
 ﻿namespace SCAuditStudio
 {
-    internal class MDFile
+    public class MDFile
     {
         public string path;
+        public string subPath;
         public string rawContent;
 
         public string author;
@@ -15,10 +16,13 @@
         public string tools;
         public string recommendation;
 
+        public string fileName { get => Path.GetFileName(path); }
+
         /* CONSTRUCTORS */
         public MDFile()
         {
             path = "";
+            subPath = "";
             rawContent = "";
 
             author = "";
@@ -34,6 +38,7 @@
         public MDFile(string path, string rawContent)
         {
             this.path = path;
+            subPath = "";
             this.rawContent = rawContent;
 
             author = "";
