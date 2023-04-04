@@ -28,121 +28,168 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
+            splitContainer1 = new SplitContainer();
             label1 = new Label();
-            textBox2 = new TextBox();
-            label2 = new Label();
+            splitContainer2 = new SplitContainer();
+            textBoxBlackList = new TextBox();
             label3 = new Label();
-            textBox3 = new TextBox();
+            textBoxJudgingCriteria = new TextBox();
+            label2 = new Label();
+            button2 = new Button();
             button1 = new Button();
-            label4 = new Label();
-            textBox4 = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
+            splitContainer2.Panel1.SuspendLayout();
+            splitContainer2.Panel2.SuspendLayout();
+            splitContainer2.SuspendLayout();
             SuspendLayout();
             // 
-            // textBox1
+            // splitContainer1
             // 
-            textBox1.Location = new Point(71, 83);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(426, 23);
-            textBox1.TabIndex = 0;
+            splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.IsSplitterFixed = true;
+            splitContainer1.Location = new Point(0, 0);
+            splitContainer1.Name = "splitContainer1";
+            splitContainer1.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.Controls.Add(label1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.Controls.Add(splitContainer2);
+            splitContainer1.Panel2.Padding = new Padding(5);
+            splitContainer1.Size = new Size(559, 568);
+            splitContainer1.SplitterDistance = 76;
+            splitContainer1.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(71, 65);
+            label1.Dock = DockStyle.Top;
+            label1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(68, 15);
-            label1.TabIndex = 1;
-            label1.Text = "ProjectPath";
+            label1.Size = new Size(167, 28);
+            label1.TabIndex = 0;
+            label1.Text = "Project Properties";
             // 
-            // textBox2
+            // splitContainer2
             // 
-            textBox2.Location = new Point(71, 127);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(426, 23);
-            textBox2.TabIndex = 2;
+            splitContainer2.Dock = DockStyle.Fill;
+            splitContainer2.IsSplitterFixed = true;
+            splitContainer2.Location = new Point(5, 5);
+            splitContainer2.Name = "splitContainer2";
             // 
-            // label2
+            // splitContainer2.Panel1
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(71, 109);
-            label2.Name = "label2";
-            label2.Size = new Size(116, 15);
-            label2.TabIndex = 3;
-            label2.Text = "Project Context Path";
+            splitContainer2.Panel1.Controls.Add(textBoxBlackList);
+            splitContainer2.Panel1.Controls.Add(label3);
+            splitContainer2.Panel1.Controls.Add(textBoxJudgingCriteria);
+            splitContainer2.Panel1.Controls.Add(label2);
+            // 
+            // splitContainer2.Panel2
+            // 
+            splitContainer2.Panel2.Controls.Add(button2);
+            splitContainer2.Panel2.Controls.Add(button1);
+            splitContainer2.Size = new Size(549, 478);
+            splitContainer2.SplitterDistance = 439;
+            splitContainer2.TabIndex = 0;
+            // 
+            // textBoxBlackList
+            // 
+            textBoxBlackList.Dock = DockStyle.Top;
+            textBoxBlackList.Location = new Point(0, 53);
+            textBoxBlackList.Name = "textBoxBlackList";
+            textBoxBlackList.ReadOnly = true;
+            textBoxBlackList.Size = new Size(439, 23);
+            textBoxBlackList.TabIndex = 3;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(71, 153);
+            label3.Dock = DockStyle.Top;
+            label3.Location = new Point(0, 38);
             label3.Name = "label3";
             label3.Size = new Size(77, 15);
-            label3.TabIndex = 4;
+            label3.TabIndex = 2;
             label3.Text = "Blacklist Path";
             // 
-            // textBox3
+            // textBoxJudgingCriteria
             // 
-            textBox3.Location = new Point(71, 171);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(426, 23);
-            textBox3.TabIndex = 5;
-            textBox3.TextChanged += textBox3_TextChanged;
+            textBoxJudgingCriteria.Dock = DockStyle.Top;
+            textBoxJudgingCriteria.Location = new Point(0, 15);
+            textBoxJudgingCriteria.Name = "textBoxJudgingCriteria";
+            textBoxJudgingCriteria.ReadOnly = true;
+            textBoxJudgingCriteria.Size = new Size(439, 23);
+            textBoxJudgingCriteria.TabIndex = 1;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Dock = DockStyle.Top;
+            label2.Location = new Point(0, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(90, 15);
+            label2.TabIndex = 0;
+            label2.Text = "Judging Criteria";
+            // 
+            // button2
+            // 
+            button2.Location = new Point(2, 52);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 1;
+            button2.Text = "open";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(71, 244);
+            button1.Location = new Point(3, 14);
             button1.Name = "button1";
-            button1.Size = new Size(116, 23);
-            button1.TabIndex = 6;
-            button1.Text = "Save";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 0;
+            button1.Text = "open";
             button1.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(71, 197);
-            label4.Name = "label4";
-            label4.Size = new Size(138, 15);
-            label4.TabIndex = 7;
-            label4.Text = "Sherlock Judging Criteria";
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(71, 215);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(426, 23);
-            textBox4.TabIndex = 8;
+            button1.Click += button1_Click;
             // 
             // ProjectPropertiesTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(textBox4);
-            Controls.Add(label4);
-            Controls.Add(button1);
-            Controls.Add(textBox3);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(textBox2);
-            Controls.Add(label1);
-            Controls.Add(textBox1);
+            ClientSize = new Size(559, 568);
+            Controls.Add(splitContainer1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "ProjectPropertiesTab";
             Text = "ProjectPropertiesTab";
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel1.PerformLayout();
+            splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
+            splitContainer2.Panel1.ResumeLayout(false);
+            splitContainer2.Panel1.PerformLayout();
+            splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
+            splitContainer2.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private TextBox textBox1;
+        private SplitContainer splitContainer1;
         private Label label1;
-        private TextBox textBox2;
-        private Label label2;
+        private SplitContainer splitContainer2;
         private Label label3;
-        private TextBox textBox3;
+        private TextBox textBoxJudgingCriteria;
+        private Label label2;
+        private TextBox textBoxBlackList;
+        private Button button2;
         private Button button1;
-        private Label label4;
-        private TextBox textBox4;
     }
 }

@@ -1,17 +1,19 @@
 ﻿using Microsoft.Web.WebView2.WinForms;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace SCAuditStudio
 {
     public partial class MainView : Form
     {
-        public string ProjectDirectory = @"C:\Users\LinenBox\Documents\GitHub\2023-03-Gitcoin-judging-Oot2k";
+        public string? ProjectDirectory = null;
         public MDManager mdManager;
 
         public MainView()
         {
             InitializeComponent();
-
+            ProjectDirectory = ConfigFile.Read<string>("ProjectDirectory");
+            if (ProjectDirectory == null) return;
             mdManager = new(ProjectDirectory);
         }
 
@@ -78,6 +80,7 @@ namespace SCAuditStudio
         /* EVENTS */
         async void MainView_Load(object sender, EventArgs e)
         {
+            if (mdManager == null) return;
             await mdManager.LoadFilesAsync();
 
             UpdateFileTree();
@@ -214,8 +217,30 @@ namespace SCAuditStudio
 
         private void optionsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            SettingsMenu s = new SettingsMenu();
-            s.Show();
+            if (TabInCollection("Options")) return;
+            TabPage page = new("Options");
+            SettingsMenu menu = new SettingsMenu();
+            menu.TopLevel = false;
+            page.Controls.Add(menu);
+            MDFileViewTabs.TabPages.Add(page);
+            menu.BringToFront();
+            menu.Show();
+            MDFileViewTabs.SelectedTab = page;
+        }
+
+        private async void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog ofd = new FolderBrowserDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                ProjectDirectory = ofd.SelectedPath;
+                mdManager = new(ProjectDirectory);
+                await mdManager.LoadFilesAsync();
+
+                UpdateFileTree();
+                LoadContextIssues();
+                ConfigFile.Write("ProjectDirectory", ofd.SelectedPath);
+            }
         }
     }
 }

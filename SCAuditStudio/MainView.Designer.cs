@@ -51,6 +51,7 @@
             magentaToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
+            openToolStripMenuItem = new ToolStripMenuItem();
             optionsToolStripMenuItem = new ToolStripMenuItem();
             optionsToolStripMenuItem1 = new ToolStripMenuItem();
             automationToolStripMenuItem = new ToolStripMenuItem();
@@ -153,7 +154,7 @@
             // 
             // redToolStripMenuItem
             // 
-            redToolStripMenuItem.BackColor = Color.Red;
+            redToolStripMenuItem.BackColor = Color.OrangeRed;
             redToolStripMenuItem.ForeColor = Color.White;
             redToolStripMenuItem.Name = "redToolStripMenuItem";
             resources.ApplyResources(redToolStripMenuItem, "redToolStripMenuItem");
@@ -169,22 +170,23 @@
             // 
             // yellowToolStripMenuItem1
             // 
-            yellowToolStripMenuItem1.BackColor = Color.Yellow;
-            yellowToolStripMenuItem1.ForeColor = Color.Black;
+            yellowToolStripMenuItem1.BackColor = Color.YellowGreen;
+            yellowToolStripMenuItem1.ForeColor = Color.White;
             yellowToolStripMenuItem1.Name = "yellowToolStripMenuItem1";
             resources.ApplyResources(yellowToolStripMenuItem1, "yellowToolStripMenuItem1");
             yellowToolStripMenuItem1.Click += MDFileListHighlight;
             // 
             // greenToolStripMenuItem
             // 
-            greenToolStripMenuItem.BackColor = Color.Lime;
+            greenToolStripMenuItem.BackColor = Color.MediumSeaGreen;
+            greenToolStripMenuItem.ForeColor = Color.White;
             greenToolStripMenuItem.Name = "greenToolStripMenuItem";
             resources.ApplyResources(greenToolStripMenuItem, "greenToolStripMenuItem");
             greenToolStripMenuItem.Click += MDFileListHighlight;
             // 
             // blueToolStripMenuItem
             // 
-            blueToolStripMenuItem.BackColor = Color.Blue;
+            blueToolStripMenuItem.BackColor = Color.SlateBlue;
             blueToolStripMenuItem.ForeColor = Color.White;
             blueToolStripMenuItem.Name = "blueToolStripMenuItem";
             resources.ApplyResources(blueToolStripMenuItem, "blueToolStripMenuItem");
@@ -192,7 +194,7 @@
             // 
             // magentaToolStripMenuItem
             // 
-            magentaToolStripMenuItem.BackColor = Color.Magenta;
+            magentaToolStripMenuItem.BackColor = Color.HotPink;
             magentaToolStripMenuItem.ForeColor = Color.White;
             magentaToolStripMenuItem.Name = "magentaToolStripMenuItem";
             resources.ApplyResources(magentaToolStripMenuItem, "magentaToolStripMenuItem");
@@ -206,8 +208,15 @@
             // 
             // fileToolStripMenuItem
             // 
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             resources.ApplyResources(fileToolStripMenuItem, "fileToolStripMenuItem");
+            // 
+            // openToolStripMenuItem
+            // 
+            openToolStripMenuItem.Name = "openToolStripMenuItem";
+            resources.ApplyResources(openToolStripMenuItem, "openToolStripMenuItem");
+            openToolStripMenuItem.Click += openToolStripMenuItem_Click;
             // 
             // optionsToolStripMenuItem
             // 
@@ -345,5 +354,6 @@
         private SplitContainer splitContainer2;
         private TreeView MDFileList;
         private TabControl MDFileViewTabs;
+        private ToolStripMenuItem openToolStripMenuItem;
     }
 }

@@ -10,6 +10,7 @@ namespace SCAuditStudio
         [STAThread]
         static void Main()
         {
+            ConfigFile.Init();
             ApplicationConfiguration.Initialize();
             Application.Run(new MainView());
         }

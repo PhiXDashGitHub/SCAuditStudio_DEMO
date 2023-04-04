@@ -42,6 +42,7 @@
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.IsSplitterFixed = true;
             splitContainer1.Location = new Point(0, 0);
             splitContainer1.Name = "splitContainer1";
             // 
@@ -50,20 +51,21 @@
             splitContainer1.Panel1.Controls.Add(buttonAISettings);
             splitContainer1.Panel1.Controls.Add(buttonThemeSettings);
             splitContainer1.Panel1.Controls.Add(buttonOpenProjectProperties);
+            splitContainer1.Panel1.Padding = new Padding(0, 70, 0, 0);
             // 
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(panel1);
-            splitContainer1.Size = new Size(800, 708);
-            splitContainer1.SplitterDistance = 197;
+            splitContainer1.Size = new Size(768, 607);
+            splitContainer1.SplitterDistance = 189;
             splitContainer1.TabIndex = 0;
             // 
             // buttonAISettings
             // 
             buttonAISettings.Dock = DockStyle.Top;
-            buttonAISettings.Location = new Point(0, 100);
+            buttonAISettings.Location = new Point(0, 170);
             buttonAISettings.Name = "buttonAISettings";
-            buttonAISettings.Size = new Size(197, 60);
+            buttonAISettings.Size = new Size(189, 60);
             buttonAISettings.TabIndex = 2;
             buttonAISettings.Text = "AI and Automation Settings";
             buttonAISettings.UseVisualStyleBackColor = true;
@@ -72,9 +74,9 @@
             // buttonThemeSettings
             // 
             buttonThemeSettings.Dock = DockStyle.Top;
-            buttonThemeSettings.Location = new Point(0, 50);
+            buttonThemeSettings.Location = new Point(0, 120);
             buttonThemeSettings.Name = "buttonThemeSettings";
-            buttonThemeSettings.Size = new Size(197, 50);
+            buttonThemeSettings.Size = new Size(189, 50);
             buttonThemeSettings.TabIndex = 1;
             buttonThemeSettings.Text = "Color and Theme";
             buttonThemeSettings.UseVisualStyleBackColor = true;
@@ -83,9 +85,9 @@
             // buttonOpenProjectProperties
             // 
             buttonOpenProjectProperties.Dock = DockStyle.Top;
-            buttonOpenProjectProperties.Location = new Point(0, 0);
+            buttonOpenProjectProperties.Location = new Point(0, 70);
             buttonOpenProjectProperties.Name = "buttonOpenProjectProperties";
-            buttonOpenProjectProperties.Size = new Size(197, 50);
+            buttonOpenProjectProperties.Size = new Size(189, 50);
             buttonOpenProjectProperties.TabIndex = 0;
             buttonOpenProjectProperties.Text = "Project Properties";
             buttonOpenProjectProperties.UseVisualStyleBackColor = true;
@@ -96,15 +98,16 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(599, 708);
+            panel1.Size = new Size(575, 607);
             panel1.TabIndex = 0;
             // 
             // SettingsMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 708);
+            ClientSize = new Size(768, 607);
             Controls.Add(splitContainer1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "SettingsMenu";
             Text = "SettingsMenu";
             splitContainer1.Panel1.ResumeLayout(false);

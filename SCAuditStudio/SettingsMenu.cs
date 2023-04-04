@@ -15,6 +15,7 @@ namespace SCAuditStudio
         public SettingsMenu()
         {
             InitializeComponent();
+            OpenChildForm(new SettingsMenuTabs.ProjectPropertiesTab());
         }
 
         private void buttonOpenProjectProperties_Click(object sender, EventArgs e)
