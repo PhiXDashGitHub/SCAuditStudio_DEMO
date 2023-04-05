@@ -57,12 +57,11 @@
             automationToolStripMenuItem = new ToolStripMenuItem();
             aISortToolStripMenuItem = new ToolStripMenuItem();
             aIScoreToolStripMenuItem = new ToolStripMenuItem();
-            staticSortToolStripMenuItem = new ToolStripMenuItem();
-            staticScoreToolStripMenuItem = new ToolStripMenuItem();
             splitContainer1 = new SplitContainer();
             splitContainer2 = new SplitContainer();
             MDFileList = new TreeView();
             MDFileViewTabs = new TabControl();
+            staticInvalidToolStripMenuItem = new ToolStripMenuItem();
             MDFileListContext.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -232,7 +231,7 @@
             // 
             // automationToolStripMenuItem
             // 
-            automationToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aISortToolStripMenuItem, aIScoreToolStripMenuItem, staticSortToolStripMenuItem, staticScoreToolStripMenuItem });
+            automationToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aISortToolStripMenuItem, aIScoreToolStripMenuItem, staticInvalidToolStripMenuItem });
             automationToolStripMenuItem.Name = "automationToolStripMenuItem";
             resources.ApplyResources(automationToolStripMenuItem, "automationToolStripMenuItem");
             // 
@@ -240,21 +239,13 @@
             // 
             aISortToolStripMenuItem.Name = "aISortToolStripMenuItem";
             resources.ApplyResources(aISortToolStripMenuItem, "aISortToolStripMenuItem");
+            aISortToolStripMenuItem.Click += aISortToolStripMenuItem_Click;
             // 
             // aIScoreToolStripMenuItem
             // 
             aIScoreToolStripMenuItem.Name = "aIScoreToolStripMenuItem";
             resources.ApplyResources(aIScoreToolStripMenuItem, "aIScoreToolStripMenuItem");
-            // 
-            // staticSortToolStripMenuItem
-            // 
-            staticSortToolStripMenuItem.Name = "staticSortToolStripMenuItem";
-            resources.ApplyResources(staticSortToolStripMenuItem, "staticSortToolStripMenuItem");
-            // 
-            // staticScoreToolStripMenuItem
-            // 
-            staticScoreToolStripMenuItem.Name = "staticScoreToolStripMenuItem";
-            resources.ApplyResources(staticScoreToolStripMenuItem, "staticScoreToolStripMenuItem");
+            aIScoreToolStripMenuItem.Click += aIScoreToolStripMenuItem_Click;
             // 
             // splitContainer1
             // 
@@ -296,6 +287,12 @@
             MDFileViewTabs.SelectedIndex = 0;
             MDFileViewTabs.DrawItem += MDFileViewTabs_DrawItem;
             MDFileViewTabs.MouseClick += MDFileViewTabs_MouseClick;
+            // 
+            // staticInvalidToolStripMenuItem
+            // 
+            staticInvalidToolStripMenuItem.Name = "staticInvalidToolStripMenuItem";
+            resources.ApplyResources(staticInvalidToolStripMenuItem, "staticInvalidToolStripMenuItem");
+            staticInvalidToolStripMenuItem.Click += staticInvalidToolStripMenuItem_Click;
             // 
             // MainView
             // 
@@ -347,13 +344,12 @@
         private ToolStripMenuItem automationToolStripMenuItem;
         private ToolStripMenuItem aISortToolStripMenuItem;
         private ToolStripMenuItem aIScoreToolStripMenuItem;
-        private ToolStripMenuItem staticSortToolStripMenuItem;
-        private ToolStripMenuItem staticScoreToolStripMenuItem;
         private ToolStripMenuItem optionsToolStripMenuItem1;
         private SplitContainer splitContainer1;
         private SplitContainer splitContainer2;
         private TreeView MDFileList;
         private TabControl MDFileViewTabs;
         private ToolStripMenuItem openToolStripMenuItem;
+        private ToolStripMenuItem staticInvalidToolStripMenuItem;
     }
 }

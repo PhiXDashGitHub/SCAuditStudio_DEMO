@@ -115,9 +115,11 @@ namespace SCAuditStudio
 
                     if (file.EndsWith(".md"))
                     {
-                        fileNode.title = GetFile(fileName)?.title ?? "untitled";
-                        previewTitle = fileNode.title;
-                        fileNode.Text += $" - {fileNode.title} - {fileNode.score}";
+                        MDFile? mDFile = GetFile(fileName);
+                        fileNode.title = mDFile?.title[..Math.Min(30,mDFile.title.Length)] ?? "untitled";
+                        fileNode.score = mDFile?.score ?? 0;
+                        previewTitle = fileNode.title.TrimEnd() + (mDFile?.title.Length > 30 ? "..." : "");
+                        fileNode.Text += $" - {fileNode.title.TrimEnd() + (mDFile?.title.Length > 30 ? "..." : "")} - {fileNode.score}";
                     }
 
                     subNode.Nodes.Add(fileNode);
@@ -140,8 +142,10 @@ namespace SCAuditStudio
 
                 if (file.EndsWith(".md"))
                 {
-                    fileNode.title = GetFile(fileName)?.title ?? "untitled";
-                    fileNode.Text += $" - {fileNode.title} - {fileNode.score}";
+                    MDFile? mDFile = GetFile(fileName);
+                    fileNode.title = mDFile?.title[..Math.Min(30, mDFile.title.Length)] ?? "untitled";
+                    fileNode.score = mDFile?.score ?? 0;
+                    fileNode.Text += $" - {fileNode.title.TrimEnd() + (mDFile?.title.Length > 30 ? "..." : "")} - {fileNode.score}";
                 }
 
                 nodes.Add(fileNode);

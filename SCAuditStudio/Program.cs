@@ -31,7 +31,22 @@ namespace SCAuditStudio
 
             TaskDialog.ShowDialog(page);
         }
+        public static bool UserSelectOk(string header, string text)
+        {
+            TaskDialogPage page = new()
+            {
+                Caption = header,
+                Text = text,
+                Icon = TaskDialogIcon.Warning,
+                Buttons = new TaskDialogButtonCollection(),
+            };
 
+            page.Buttons.Add(TaskDialogButton.Yes);
+            page.Buttons.Add(TaskDialogButton.No);
+            SystemSounds.Question.Play();
+            return TaskDialog.ShowDialog(page) == TaskDialogButton.Yes;
+
+        }
         public static string ToSingle(this string[] array)
         {
             string result = array[0];

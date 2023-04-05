@@ -15,7 +15,7 @@
         public CodeSnippet[] code;
         public string tools;
         public string recommendation;
-
+        public int score;
         public string fileName { get => Path.GetFileName(path); }
 
         /* CONSTRUCTORS */
@@ -34,6 +34,7 @@
             code = Array.Empty<CodeSnippet>();
             tools = "";
             recommendation = "";
+            score = 0;
         }
         public MDFile(string path, string rawContent)
         {
@@ -50,6 +51,7 @@
             code = Array.Empty<CodeSnippet>();
             tools = "";
             recommendation = "";
+            score = 0;
         }
 
         /* STATIC PROPERTIES */

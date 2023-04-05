@@ -122,43 +122,43 @@
     <value>Mark Issue</value>
   </data>
   <data name="clearToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>168, 22</value>
   </data>
   <data name="clearToolStripMenuItem.Text" xml:space="preserve">
     <value>Clear</value>
   </data>
   <data name="redToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>168, 22</value>
   </data>
   <data name="redToolStripMenuItem.Text" xml:space="preserve">
     <value>OrangeRed</value>
   </data>
   <data name="orangeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>168, 22</value>
   </data>
   <data name="orangeToolStripMenuItem.Text" xml:space="preserve">
     <value>Orange</value>
   </data>
   <data name="yellowToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>168, 22</value>
   </data>
   <data name="yellowToolStripMenuItem1.Text" xml:space="preserve">
     <value>YellowGreen</value>
   </data>
   <data name="greenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>168, 22</value>
   </data>
   <data name="greenToolStripMenuItem.Text" xml:space="preserve">
     <value>MediumSeaGreen</value>
   </data>
   <data name="blueToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>168, 22</value>
   </data>
   <data name="blueToolStripMenuItem.Text" xml:space="preserve">
     <value>SlateBlue</value>
   </data>
   <data name="magentaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>168, 22</value>
   </data>
   <data name="magentaToolStripMenuItem.Text" xml:space="preserve">
     <value>HotPink</value>
@@ -182,7 +182,7 @@
     <value>167, 17</value>
   </metadata>
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>103, 22</value>
   </data>
   <data name="openToolStripMenuItem.Text" xml:space="preserve">
     <value>Open</value>
@@ -194,7 +194,7 @@
     <value>File</value>
   </data>
   <data name="optionsToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>116, 22</value>
   </data>
   <data name="optionsToolStripMenuItem1.Text" xml:space="preserve">
     <value>Options</value>
@@ -206,28 +206,22 @@
     <value>Project</value>
   </data>
   <data name="aISortToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="aISortToolStripMenuItem.Text" xml:space="preserve">
     <value>AI Sort</value>
   </data>
   <data name="aIScoreToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="aIScoreToolStripMenuItem.Text" xml:space="preserve">
     <value>AI Score</value>
   </data>
-  <data name="staticSortToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 22</value>
+  <data name="staticInvalidToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
   </data>
-  <data name="staticSortToolStripMenuItem.Text" xml:space="preserve">
-    <value>Static Sort</value>
-  </data>
-  <data name="staticScoreToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 22</value>
-  </data>
-  <data name="staticScoreToolStripMenuItem.Text" xml:space="preserve">
-    <value>Static Score</value>
+  <data name="staticInvalidToolStripMenuItem.Text" xml:space="preserve">
+    <value>Static Invalid</value>
   </data>
   <data name="automationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 20</value>
@@ -582,16 +576,10 @@
   <data name="&gt;&gt;aIScoreToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;staticSortToolStripMenuItem.Name" xml:space="preserve">
-    <value>staticSortToolStripMenuItem</value>
+  <data name="&gt;&gt;staticInvalidToolStripMenuItem.Name" xml:space="preserve">
+    <value>staticInvalidToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;staticSortToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;staticScoreToolStripMenuItem.Name" xml:space="preserve">
-    <value>staticScoreToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;staticScoreToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;staticInvalidToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

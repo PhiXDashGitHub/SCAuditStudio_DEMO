@@ -1,4 +1,6 @@
-﻿namespace SCAuditStudio
+﻿using System.Runtime.Intrinsics.X86;
+
+namespace SCAuditStudio
 {
     static class AutoDirectorySort
     {
@@ -34,9 +36,9 @@
             return staticScore;
         }
 
-        static async Task<bool> CompareIssues(string title1, string title2, string content1, string content2, string context)
+        static async Task<bool> CompareIssues(MDFile issue1, MDFile issue2, string context)
         {
-            float staticDistance = CompareIssuesStatic(title1, title2, content1, content2);
+            float staticDistance = CompareIssuesStatic(issue1,issue2);
             if (staticDistance < 0.5)
             {
                 return true;
@@ -46,8 +48,8 @@
                 string[] userMessage = new string[4];
                 userMessage[0] = "Compare these two Smart Contract Vurnabilitys, only return one of these categorys: Same (if they are identical),Similar (if they they have something in common), Different(if they have nothing in common) use following context:";
                 userMessage[1] = "Context: \n" + context;
-                userMessage[2] = "Vulnability1: \n" + content1;
-                userMessage[3] = "Vulnability2: \n" + content2;
+                userMessage[2] = "Vulnability1: \n" + issue1.summary;
+                userMessage[3] = "Vulnability2: \n" + issue1.summary;
 
                 var userMessageS = userMessage.ToSingle();
                 string response = await AISort.AskGPT(userMessageS);
@@ -64,20 +66,22 @@
             }
         }
 
-        static int GetStaticScore(MDFile issue,int avgIssueTextLength)
+        static public int GetStaticScore(MDFile issue,float avgIssueTextLength)
         {
             int totallength = issue.impact.Length + issue.detail.Length + issue.summary.Length;
-            int blackListScore = StaticStringOperations.CheckForBlackList(issue, File.ReadAllText(Application.StartupPath + "./blacklist.txt"));
-            int totalscore = Convert.ToInt16((totallength / avgIssueTextLength) + issue.impact.Length + blackListScore);
+            int blackListScore = StaticStringOperations.CheckForBlackList(issue, ConfigFile.Read<string>("BlackList") ?? "");
+            int totalscore = Convert.ToInt16((totallength / avgIssueTextLength) * (issue.impact.Length + blackListScore));
             return totalscore;
         }
-        static float CompareIssuesStatic(string title1, string title2, string content1, string content2)
+        static public float CompareIssuesStatic(MDFile issue1, MDFile issue2)
         {
+
+
             //Static compare title
-            float staticDistanceTitle = StaticStringOperations.StaticCompareString(title1, title2);
+            float staticDistanceTitle = StaticStringOperations.StaticCompareString(issue1.title, issue2.title);
 
             //Static compare content
-            float staticDistanceContent = StaticStringOperations.StaticCompareString(content1, content2);
+            float staticDistanceContent = StaticStringOperations.StaticCompareString(issue1.rawContent, issue2.rawContent);
             return staticDistanceTitle + staticDistanceContent;
         }
     }

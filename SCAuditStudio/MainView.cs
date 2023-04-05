@@ -1,4 +1,5 @@
 ﻿using Microsoft.Web.WebView2.WinForms;
+using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 
@@ -82,7 +83,7 @@ namespace SCAuditStudio
         {
             if (mdManager == null) return;
             await mdManager.LoadFilesAsync();
-
+            StaticScore();
             UpdateFileTree();
             LoadContextIssues();
         }
@@ -237,10 +238,123 @@ namespace SCAuditStudio
                 mdManager = new(ProjectDirectory);
                 await mdManager.LoadFilesAsync();
 
+                StaticScore();
                 UpdateFileTree();
                 LoadContextIssues();
                 ConfigFile.Write("ProjectDirectory", ofd.SelectedPath);
             }
+        }
+
+        private void StaticScore()
+        {
+            MDFile[] issues = mdManager.mdFiles;
+            //int totallength = issue.impact.Length + issue.detail.Length + issue.summary.Length;
+            float totallength = 0;
+
+            for (int i = 0; i < issues.Length; i++)
+            {
+                totallength += issues[i].impact.Length + issues[i].detail.Length + issues[i].summary.Length;
+            }
+            float avgissuelength = totallength / issues.Length;
+            for (int i = 0; i < issues.Length; i++)
+            {
+                issues[i].score = AutoDirectorySort.GetStaticScore(issues[i], avgissuelength);
+            }
+        }
+
+        public void StaticSort()
+        {
+            MDFile[] issues = mdManager.mdFiles;
+            //int totallength = issue.impact.Length + issue.detail.Length + issue.summary.Length;
+            float totallength = 0;
+
+            for (int i = 0; i < issues.Length; i++)
+            {
+                totallength += issues[i].impact.Length + issues[i].detail.Length + issues[i].summary.Length;
+            }
+            float avgissuelength = totallength / issues.Length;
+            for (int i = 0; i < issues.Length; i++)
+            {
+                issues[i].score = AutoDirectorySort.GetStaticScore(issues[i], avgissuelength);
+                if (issues[i].score < 10)
+                {
+                    mdManager.MoveFileToInvalid(issues[i].fileName);
+                }
+            }
+            Dictionary<string, int> sort = new Dictionary<string, int>();
+
+            for (int i = 0; i < issues.Length; i++)
+            {
+                int c = 0;
+
+                for (int j = i + 1; j < issues.Length; j++)
+                {
+                    if (AutoDirectorySort.CompareIssuesStatic(issues[i], issues[j]) < 0.3f)
+                    {
+                        //Both issues are the same
+                        sort.Add(issues[j].fileName, i);
+                        c++;
+                    }
+                }
+                if (c > 0)
+                {
+                    sort.Add(issues[i].fileName, i);
+                }
+                Console.WriteLine("Progress: " + (float)i / issues.Length);
+            }
+            Console.WriteLine("Ready");
+            for (int i = 0; i < sort.Count; i++)
+            {
+                mdManager.MoveFileToIssue(sort.ElementAt(i).Key, MDManager.MDFileIssue.Medium, sort.ElementAt(i).Value, true);
+            }
+            UpdateFileTree();
+        }
+
+        private void staticSortToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aISortToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.InfoMessage("Demo", "Please be patient while we implement this feature");
+        }
+
+        private void aIScoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.InfoMessage("Demo", "Please be patient while we implement this feature");
+        }
+
+        private void staticInvalidToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Program.UserSelectOk("Auto Invalid", "This may reset some progress, do you want to continue?")) return;
+            MDFile[] issues = mdManager.mdFiles;
+            //int totallength = issue.impact.Length + issue.detail.Length + issue.summary.Length;
+            float totallength = 0;
+
+            for (int i = 0; i < issues.Length; i++)
+            {
+                totallength += issues[i].impact.Length + issues[i].detail.Length + issues[i].summary.Length;
+            }
+            float avgissuelength = totallength / issues.Length;
+            float totalscore = 0;
+            float maxscore = 0;
+            for (int i = 0; i < issues.Length; i++)
+            {
+                issues[i].score = AutoDirectorySort.GetStaticScore(issues[i], avgissuelength);
+                totalscore += issues[i].score;
+                maxscore = issues[i].score > maxscore ? issues[i].score : maxscore;
+            }
+            float avgissuescore = totalscore / issues.Length;
+            for (int i = 0; i < issues.Length; i++)
+            {
+                Console.WriteLine((issues[i].score - avgissuescore)  + " : " + -(maxscore * 0.05f));
+                if ((issues[i].score - avgissuescore) < -(maxscore * 0.05f))
+                {
+                    mdManager.MoveFileToInvalid(issues[i].fileName);
+                }
+            }
+            UpdateFileTree();
         }
     }
 }
